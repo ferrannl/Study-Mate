@@ -16,6 +16,6 @@ class Teacher extends Model
 //    const UPDATED_AT = 'last_update';
     public function module()
     {
-        return $this->hasMany('App\module', 'id', 'naam');
+        return $this->belongsToMany('App\Module', 'teacher_has_module', 'teacher_id','module_id');
     }
 }

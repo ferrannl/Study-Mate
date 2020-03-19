@@ -8,7 +8,7 @@ class Module extends Model
 {
     public function teacher()
     {
-        return $this->hasMany('App\teacher', 'id', 'docent');
+        return $this->belongsToMany('App\Teacher', 'teacher_has_module', 'teacher_id','module_id');
     }
 
     public function coordinator()

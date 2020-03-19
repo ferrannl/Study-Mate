@@ -5,16 +5,18 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header">Admin Dashboard</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                       
+                            
+                        @foreach($teachers as $teacher)
+                            <h3>{{$teacher->name}}</h3>
+                            
 
-                        You are logged in!
+                        @endforeach
+
+                        
                     </div>
                 </div>
             </div>
