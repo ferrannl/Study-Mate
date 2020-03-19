@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-    <audio controls>
+    <audio controls autoplay>
         <source src="studymate.ogg" type="audio/ogg">
         <source src="studymate.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
