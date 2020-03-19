@@ -15,6 +15,15 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50)->unique();
+            $table->tinyInteger('achieved');
+            $table->unsignedInteger('teacher');
+            $table->foreign('teacher')->references('id')->on('teachers');
+            $table->unsignedInteger('coordinator');
+            $table->foreign('coordinator')->references('id')->on('teachers');
+            $table->integer('EC');
+            $table->string('block');
+            $table->foreign('block')->references('id')->on('blocks');
             $table->timestamps();
         });
     }
