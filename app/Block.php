@@ -8,6 +8,6 @@ class Block extends Model
 {
     public function module()
     {
-        return $this->belongsToMany('App\modules', 'id', 'blok');
+        return $this->belongsTo('App\modules', 'block_id', 'id');
     }
 }

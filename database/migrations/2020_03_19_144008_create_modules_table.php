@@ -14,7 +14,7 @@ class CreateModulesTable extends Migration
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name', 50)->unique();
             $table->tinyInteger('achieved');
             $table->unsignedInteger('teacher');
@@ -22,8 +22,8 @@ class CreateModulesTable extends Migration
             $table->unsignedInteger('coordinator');
             $table->foreign('coordinator')->references('id')->on('teachers');
             $table->integer('EC');
-            $table->string('block');
-            $table->foreign('block')->references('id')->on('blocks');
+            $table->unsignedInteger('block_id');
+            $table->foreign('block_id')->references('id')->on('blocks');
             $table->timestamps();
         });
     }

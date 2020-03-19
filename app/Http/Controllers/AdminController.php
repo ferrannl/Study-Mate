@@ -16,4 +16,10 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         return view('Admin/dashboard');
     }
+
+    public function create(Request $request)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        return view('Admin/create');
+    }
 }

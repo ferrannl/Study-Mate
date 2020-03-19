@@ -14,7 +14,7 @@ class TeacherHasModule extends Migration
     public function up()
     {
         Schema::create('teacher_has_module', function (Blueprint $table) {
-            $table->Integer('id');
+            $table->increments('id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('module_id');
             $table->foreign('teacher_id')->references('id')->on('teachers');
