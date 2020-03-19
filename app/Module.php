@@ -15,4 +15,8 @@ class Module extends Model
     {
         return $this->hasOne('App\teacher', 'id', 'coördinator');
     }
+
+    public function block(){
+        return $this->hasOne('App\block', 'id', 'blok');
+    }
 }
