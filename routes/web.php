@@ -24,3 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
 Route::get('/create', 'AdminController@create')->name('create');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/store', 'AdminController@store');
