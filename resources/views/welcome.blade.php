@@ -40,6 +40,12 @@
                 top: 18px;
             }
 
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -64,12 +70,14 @@
         </style>
     </head>
     <body>
-    <audio controls autoplay>
-        <source src="studymate.ogg" type="audio/ogg">
-        <source src="studymate.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
         <div class="flex-center position-ref full-height">
+            <div class="top-left">
+            <audio controls autoplay>
+                <source src="studymate.ogg" type="audio/ogg">
+                <source src="studymate.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            </div>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
