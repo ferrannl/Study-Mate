@@ -98,9 +98,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Admin Omgeving</a>
-                    <a href="https://laracasts.com">Dashboard</a>
-                    <a href="https://laravel-news.com">Deadline Manager</a>
+                    <a href="admin-dashboard">Admin Omgeving</a>
+                    <a href="dashboard">Dashboard</a>
+                    <a href="deadline-manager">Deadline Manager</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>

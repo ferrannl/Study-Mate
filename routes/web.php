@@ -23,10 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
-Route::get('/create', 'AdminController@create')->name('create');
+Route::get('/createTeacher', 'AdminController@createTeacher')->name('create');
+
+Route::get('/createModule', 'AdminController@createModule')->name('create');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/store', 'AdminController@store');
+Route::post('/storeTeacher', 'AdminController@storeTeacher');
+
+Route::post('/storeModule', 'AdminController@storeModule');
+
