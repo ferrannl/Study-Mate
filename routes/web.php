@@ -39,4 +39,12 @@ Route::get('/deleteTeacher/{id}', 'AdminController@deleteTeacher');
 
 Route::get('/deleteModule/{id}', 'AdminController@deleteModule');
 
+Route::get('/editTeacher/{id}', 'AdminController@editTeacher');
 
+Route::get('/editModule/{id}', 'AdminController@editModule');
+
+Route::post('/updateTeacher/{id}', 'AdminController@updateTeacher');
+
+Route::post('/updateModule/{id}', 'AdminController@updateModule');
+
+Route::get('/editTeacherModule/{id}', 'AdminController@deleteTeacher');

@@ -22,12 +22,34 @@
                     </div>
 
                     <div class="form-group">
-                        @foreach($modules as $module)
-                        <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">
-                        <label for="{{ $module->name }}">{{ $module->name }}</label><br>
+                        <label for="name">Which teachers teach this module:</label><br>
+                        @foreach($teachers as $teacher)
+                        <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
+                        <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
                         @endforeach
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Who coordinates this module?</label>
+                        <select class="form-control" id="selectCoordinator" name="selectCoordinator">
+                            <option value="">Noone yet</option>
+                            @foreach($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
+                            @endforeach
 
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
+                        <select class="form-control" id="selectTeacher" name="selectTeacher">
+                            <option value="">Noone yet</option>
+                            @foreach($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
+                            @endforeach
+
+
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add contact</button>
 
                 </form>

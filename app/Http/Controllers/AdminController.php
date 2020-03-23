@@ -15,7 +15,8 @@ class AdminController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $teachers = \App\Teacher::all();
-        return view('admin/dashboard',['teachers' => $teachers]);
+        $modules = \App\Module::all();
+        return view('admin/dashboard',['teachers' => $teachers],['modules' => $modules]);
     }
 
     public function createTeacher(Request $request)
@@ -28,8 +29,8 @@ class AdminController extends Controller
     public function createModule(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        $modules = \App\Module::all();
-        return view('admin/createModule', ['modules' => $modules]);
+        $teachers = \App\Teacher::all();
+        return view('admin/createModule', ['teachers' => $teachers]);
     }
 
     public function storeTeacher(Request $request){
@@ -49,6 +50,9 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $module = new \App\Module();
         $module->name=request('name');
+        $module->coordinator = request('selectCoordinator');
+        $module->teacher = request('selectTeacher');
+
         $teachers = $request->teachers;
 
         $module->save();
@@ -67,5 +71,44 @@ class AdminController extends Controller
         return redirect('/admin-dashboard');
     }
 
+    public function deleteModule(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        $module = \App\Module::find($id);
+        $module->teacher()->detach();
+        $module->delete();
+        return redirect('/admin-dashboard');
+    }
+    public function editModule(Request $request,$id){
+        $request->user()->authorizeRoles(['admin']);
+
+        $module = \App\Module::find($id);
+
+        return view('admin.editModule', ['module' => $module]);
+    }
+    public function editTeacher(Request $request,$id){
+        $request->user()->authorizeRoles(['admin']);
+
+        $teacher = \App\Teacher::find($id);
+
+        return view('admin.editTeacher', ['teacher' => $teacher]);
+    }
+    public function updateModule(Request $request){
+        $request->user()->authorizeRoles(['admin']);
+
+    }
+    public function updateTeacher(Request $request){
+        $request->user()->authorizeRoles(['admin']);
+
+    }
+
+    public function deleteTeacherModule(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        $module = \App\Module::find($id);
+        $module->teacher()->detach($id);
+        $module->save();
+        return view('admin.editTeacher',);
+    }
 
 }
