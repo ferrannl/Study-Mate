@@ -16,7 +16,7 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $teachers = \App\Teacher::all();
         $modules = \App\Module::all();
-        return view('admin/dashboard',['teachers' => $teachers],['modules' => $modules]);
+        return view('admin/dashboard', ['teachers' => $teachers], ['modules' => $modules]);
     }
 
     public function createTeacher(Request $request)
@@ -33,30 +33,32 @@ class AdminController extends Controller
         return view('admin/createModule', ['teachers' => $teachers]);
     }
 
-    public function storeTeacher(Request $request){
+    public function storeTeacher(Request $request)
+    {
         $request->user()->authorizeRoles(['admin']);
         $teacher = new \App\Teacher();
-        $teacher->name=request('name');
+        $teacher->name = request('name');
         $modules = $request->modules;
 
         $teacher->save();
-        foreach($modules as $module){
+        foreach ($modules as $module) {
             $teacher->module()->attach(\App\Module::where('name', $module)->first());
-            }
+        }
         return redirect('/admin-dashboard');
     }
 
-    public function storeModule(Request $request){
+    public function storeModule(Request $request)
+    {
         $request->user()->authorizeRoles(['admin']);
         $module = new \App\Module();
-        $module->name=request('name');
+        $module->name = request('name');
         $module->coordinator = request('selectCoordinator');
         $module->teacher = request('selectTeacher');
 
         $teachers = $request->teachers;
 
         $module->save();
-        foreach($teachers as $teacher){
+        foreach ($teachers as $teacher) {
             $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
         }
         return redirect('/admin-dashboard');
@@ -79,25 +81,45 @@ class AdminController extends Controller
         $module->delete();
         return redirect('/admin-dashboard');
     }
-    public function editModule(Request $request,$id){
+
+    public function editModule(Request $request, $id)
+    {
         $request->user()->authorizeRoles(['admin']);
 
         $module = \App\Module::find($id);
 
         return view('admin.editModule', ['module' => $module]);
     }
-    public function editTeacher(Request $request,$id){
-        $request->user()->authorizeRoles(['admin']);
 
+    public function editTeacher(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin']);
         $teacher = \App\Teacher::find($id);
-
-        return view('admin.editTeacher', ['teacher' => $teacher]);
+        $teacherModules = $teacher->module();
+        $modules = \App\Module::all();
+        $modules2 = array();
+        foreach ($modules as $module) {
+            $found = false;
+            foreach ($teacherModules as $teacherModule) {
+                if ($module == $teacherModule) {
+                    $found = true;
+                }
+            }
+            if (!$found) {
+                array_push($modules2, $module);
+            }
+        }
+        return view('admin.editTeacher', ['teacher' => $teacher], ['modules' => $modules2]);
     }
-    public function updateModule(Request $request){
+
+    public function updateModule(Request $request)
+    {
         $request->user()->authorizeRoles(['admin']);
 
     }
-    public function updateTeacher(Request $request){
+
+    public function updateTeacher(Request $request)
+    {
         $request->user()->authorizeRoles(['admin']);
 
     }
@@ -110,5 +132,6 @@ class AdminController extends Controller
         $module->save();
         return view('admin.editTeacher',);
     }
+
 
 }
