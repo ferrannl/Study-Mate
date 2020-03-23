@@ -57,4 +57,15 @@ class AdminController extends Controller
         }
         return redirect('/admin-dashboard');
     }
+
+    public function deleteTeacher(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        $teacher = \App\Teacher::find($id);
+        $teacher->module()->detach();
+        $teacher->delete();
+        return redirect('/admin-dashboard');
+    }
+
+
 }

@@ -35,3 +35,8 @@ Route::post('/storeTeacher', 'AdminController@storeTeacher');
 
 Route::post('/storeModule', 'AdminController@storeModule');
 
+Route::get('/deleteTeacher/{id}', 'AdminController@deleteTeacher');
+
+Route::get('/deleteModule/{id}', 'AdminController@deleteModule');
+
+
