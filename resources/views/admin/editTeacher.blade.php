@@ -20,12 +20,12 @@
                     </ul>
                 </div><br/>
             @endif
+
             <form method="post" action="/updateTeacher/{{$teacher->id}}">
-                @method('PATCH')
                 @csrf
                 <div class="form-group">
                     <label for="name">Teacher Name:</label>
-                    <input type="text" class="form-control" name="share_name" value={{ $teacher->name }} />
+                    <input type="text" class="form-control" name="name" value="{{ $teacher->name }}" />
                 </div>
                 <div class="form-group">
                     <label for="name">Teacher modules:</label>
@@ -38,13 +38,11 @@
                         <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">
                         <label for="{{ $module->name }}">{{ $module->name }}</label><br>
                     @endforeach
-
-
                 </div>
                 <br>
-
                 <button type="submit" class="btn btn-success">Save changes</button>
             </form>
+
         </div>
     </div>
 @endsection

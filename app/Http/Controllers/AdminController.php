@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class AdminController extends Controller
 {
     public function __construct()
@@ -95,17 +96,16 @@ class AdminController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $teacher = \App\Teacher::find($id);
-        $teacherModules = $teacher->module();
         $modules = \App\Module::all();
         $modules2 = array();
         foreach ($modules as $module) {
             $found = false;
-            foreach ($teacherModules as $teacherModule) {
-                if ($module == $teacherModule) {
+            foreach ($teacher->module as $teacherModule) {
+                if ($module->id == $teacherModule->id) {
                     $found = true;
                 }
             }
-            if (!$found) {
+            if ($found == false) {
                 array_push($modules2, $module);
             }
         }
@@ -115,13 +115,21 @@ class AdminController extends Controller
     public function updateModule(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-
     }
 
-    public function updateTeacher(Request $request)
+    public function updateTeacher(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
+        $teacher = \App\Teacher::find($id);
+        $teacher->name = request('name');
+        $modules = $request->modules;
+        $teacher->module()->detach();
+        foreach ($modules as $module) {
+            $teacher->module()->attach(\App\Module::where('name', $module)->first());
+        }
 
+        $teacher->save();
+        return redirect('/admin-dashboard');
     }
 
     public function deleteTeacherModule(Request $request, $id)
@@ -130,7 +138,7 @@ class AdminController extends Controller
         $module = \App\Module::find($id);
         $module->teacher()->detach($id);
         $module->save();
-        return view('admin.editTeacher',);
+        return view('admin.editTeacher');
     }
 
 
