@@ -55,7 +55,7 @@ class AdminController extends Controller
         $module->name = request('name');
         $module->coordinator = request('selectCoordinator');
         $module->teacher = request('selectTeacher');
-
+        $module->EC = request('ecValue');
         $teachers = $request->teachers;
 
         $module->save();
@@ -112,9 +112,14 @@ class AdminController extends Controller
         return view('admin.editTeacher', ['teacher' => $teacher], ['modules' => $modules2]);
     }
 
-    public function updateModule(Request $request)
+    public function updateModule(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
+        $module = \App\Module::find($id);
+        $module->name = request('name');
+
+        $module->save();
+        return redirect('/admin-dashboard');
     }
 
     public function updateTeacher(Request $request, $id)

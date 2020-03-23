@@ -50,6 +50,10 @@
 
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">EC:</label>
+                        <input class="form-control" type="number" min="1" max="30" name="ecValue"/>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add contact</button>
 
                 </form>

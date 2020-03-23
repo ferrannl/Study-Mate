@@ -46,6 +46,3 @@ Route::get('/editModule/{id}', 'AdminController@editModule');
 Route::post('/updateTeacher/{id}', 'AdminController@updateTeacher');
 
 Route::post('/updateModule/{id}', 'AdminController@updateModule');
-
-Route::get('/editTeacherModule/{id}', 'AdminController@deleteTeacher');
-
