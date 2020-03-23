@@ -94,7 +94,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    StudyMate
+                    StudyMató
                 </div>
 
                 <div class="links">

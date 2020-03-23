@@ -86,10 +86,21 @@ class AdminController extends Controller
     public function editModule(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-
         $module = \App\Module::find($id);
-
-        return view('admin.editModule', ['module' => $module]);
+        $teachers = \App\Teacher::all();
+        $teachers2 = array();
+        foreach ($teachers as $teacher) {
+            $found = false;
+            foreach ($module->teacher()->get() as $moduleTeacher) {
+                if ($teacher->id == $moduleTeacher->id) {
+                    $found = true;
+                }
+            }
+            if ($found == false) {
+                array_push($teachers2, $teacher);
+            }
+        }
+        return view('admin.editModule', ['module' => $module], ['teachers' => $teachers2]);
     }
 
     public function editTeacher(Request $request, $id)
