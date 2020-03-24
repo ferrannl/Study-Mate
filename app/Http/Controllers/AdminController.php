@@ -17,7 +17,9 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $teachers = \App\Teacher::all();
         $modules = \App\Module::all();
-        return view('admin/dashboard', ['teachers' => $teachers], ['modules' => $modules]);
+        $assignments = \App\Assignment::all();
+
+        return view('admin/dashboard', ['teachers' => $teachers, 'modules' => $modules, 'assignments' => $assignments]);
     }
 
 //    public function createTeacher(Request $request)

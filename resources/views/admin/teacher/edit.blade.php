@@ -40,7 +40,7 @@
                     @endforeach
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success">Save changes</button>
+                <button type="submit" class="btn btn-success">Update</button>
             </form>
 
         </div>

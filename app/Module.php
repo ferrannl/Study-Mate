@@ -21,7 +21,7 @@ class Module extends Model
     }
 
     public function assignment(){
-        return $this->belongsToMany('App\Assignment', 'assignments', 'module_id');
+        return $this->belongsTo('App\Assignment', 'module_id', 'id');
     }
 
 }

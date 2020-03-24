@@ -17,9 +17,10 @@ class CreateAssignmentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('file');
-            $table->unsignedInteger('module_id');
+            $table->string('file')->nullable();
+            $table->unsignedInteger('module_id')->nullable();
             $table->foreign('module_id')->references('id')->on('modules');
+            $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });
     }

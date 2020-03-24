@@ -72,7 +72,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="top-left">
-            <audio controls autoplay>
+            <audio autoplay>
                 <source src="studymate.ogg" type="audio/ogg">
                 <source src="studymate.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
