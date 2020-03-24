@@ -20,7 +20,7 @@
                     </ul>
                 </div><br/>
             @endif
-            <form method="post" action="/updateModule/{{$module->id}}">
+            <form method="post" action="/module/update/{{$module->id}}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Module Name:</label>
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
                     <select class="form-control" id="selectedTeacher" name="selectedTeacher">
-                    <option value="{{ $module->teacher }}">{{ $module->teacher()->find($module->teacher)->name ?? 'noone yet'}}</option>
+                        <option value="{{ $module->teacher }}">{{ $module->teacher()->find($module->teacher)->name ?? 'noone yet'}}</option>
                         @foreach($teachersWithoutTeacher as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
@@ -67,9 +67,9 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Block:</label>
                     <select class="form-control" id="selectBlock" name="selectBlock">
-                        <option value="{{ $module->block_id }}">{{ $module->block_id->name ?? 'None'}}</option>
+                        <option value="{{ $module->block }}">{{ $module->block ?? 'None'}}</option>
                         @foreach($blocksWithoutBlock as $block)
-                            <option value="{{$block->id}}">{{ $block->name }}</option>
+                            <option value="{{$block->name}}">{{ $block->name }}</option>
                         @endforeach
                     </select>
                 </div>

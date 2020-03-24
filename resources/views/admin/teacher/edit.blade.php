@@ -21,7 +21,7 @@
                 </div><br/>
             @endif
 
-            <form method="post" action="/updateTeacher/{{$teacher->id}}">
+            <form method="post" action="/teacher/update/{{$teacher->id}}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Teacher Name:</label>

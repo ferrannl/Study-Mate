@@ -23,26 +23,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
-Route::get('/createTeacher', 'AdminController@createTeacher')->name('create');
+Route::get('/teacher/create', 'TeacherController@create')->name('create');
 
-Route::get('/createModule', 'AdminController@createModule')->name('create');
+Route::get('/module/create', 'ModuleController@create')->name('create');
 
-Auth::routes();
+Route::post('/teacher/store', 'TeacherController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/module/store', 'ModuleController@store');
 
-Route::post('/storeTeacher', 'AdminController@storeTeacher');
+Route::get('/teacher/delete/{id}', 'TeacherController@delete');
 
-Route::post('/storeModule', 'AdminController@storeModule');
+Route::get('/module/delete/{id}', 'ModuleController@delete');
 
-Route::get('/deleteTeacher/{id}', 'AdminController@deleteTeacher');
+Route::get('/teacher/edit/{id}', 'TeacherController@edit');
 
-Route::get('/deleteModule/{id}', 'AdminController@deleteModule');
+Route::get('/module/edit/{id}', 'ModuleController@edit');
 
-Route::get('/editTeacher/{id}', 'AdminController@editTeacher');
+Route::post('/teacher/update/{id}', 'TeacherController@update');
 
-Route::get('/editModule/{id}', 'AdminController@editModule');
-
-Route::post('/updateTeacher/{id}', 'AdminController@updateTeacher');
-
-Route::post('/updateModule/{id}', 'AdminController@updateModule');
+Route::post('/module/update/{id}', 'ModuleController@update');

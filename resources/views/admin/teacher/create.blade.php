@@ -14,7 +14,7 @@
                         </ul>
                     </div><br />
                 @endif
-                <form method="post" action="/storeTeacher">
+                <form method="post" action="/teacher/store">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>

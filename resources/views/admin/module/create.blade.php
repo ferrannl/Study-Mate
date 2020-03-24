@@ -14,7 +14,7 @@
                         </ul>
                     </div><br />
                 @endif
-                <form method="post" action="/storeModule">
+                <form method="post" action="/module/store">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -24,8 +24,8 @@
                     <div class="form-group">
                         <label for="name">Which teachers teach this module:</label><br>
                         @foreach($teachers as $teacher)
-                        <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
-                        <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
+                            <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
+                            <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
                         @endforeach
                     </div>
                     <div class="form-group">
