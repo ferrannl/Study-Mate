@@ -47,9 +47,20 @@
                                 <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                             @endforeach
 
-
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Block:</label>
+                        <select class="form-control" id="selectBlock" name="selectBlock">
+                            <option value="">None</option>
+                            @foreach($blocks as $block)
+                                <option value="{{$block->id}}">{{ $block->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">EC:</label>
                         <input class="form-control" type="number" min="1" max="30" name="ecValue"/>

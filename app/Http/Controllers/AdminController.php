@@ -31,7 +31,8 @@ class AdminController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $teachers = \App\Teacher::all();
-        return view('admin/createModule', ['teachers' => $teachers]);
+        $blocks = \App\Block::all();
+        return view('admin/createModule', ['teachers' => $teachers, 'blocks' => $blocks]);
     }
 
     public function storeTeacher(Request $request)
@@ -90,6 +91,7 @@ class AdminController extends Controller
         $teachers = \App\Teacher::all();
         $teachersWithoutCoordinator = \App\Teacher::where('id','!=' ,$module->coordinator)->get();
         $teachersWithoutTeacher = \App\Teacher::where('id', '!=' ,$module->teacher)->get();
+        $blocksWithoutBlock = \App\Block::where('id', '!=', $module->block)->get();
         $teachers2 = array();
         foreach ($teachers as $teacher) {
             $found = false;
@@ -102,7 +104,7 @@ class AdminController extends Controller
                 array_push($teachers2, $teacher);
             }
         }
-        return view('admin.editModule', ['module' => $module,'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator,'teachersWithoutTeacher' => $teachersWithoutTeacher]);
+        return view('admin.editModule', ['module' => $module,'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator,'teachersWithoutTeacher' => $teachersWithoutTeacher, 'blocksWithoutBlock' => $blocksWithoutBlock]);
     }
 
     public function editTeacher(Request $request, $id)
