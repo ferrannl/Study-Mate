@@ -128,7 +128,14 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $module = \App\Module::find($id);
         $module->name = request('name');
-
+        $module->teacher = request('selectedTeacher');
+        $module->coordinator = request('selectedCoordinator');
+        $module->EC = request('ecValue');
+        $teachers = $request->teachers;
+        $module->teacher()->detach();
+        foreach ($teachers as $teacher) {
+            $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+        }
         $module->save();
         return redirect('/admin-dashboard');
     }

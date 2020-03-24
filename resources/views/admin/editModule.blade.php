@@ -31,20 +31,20 @@
                     <label for="name">Which teachers teach this module:</label>
                     <br>
                     @foreach($module->teacher()->get() as $moduleTeacher)
-                        <input type="checkbox" checked id="{{ $moduleTeacher->name }}" name="teacher[]" value="{{ $moduleTeacher->name }}">
+                        <input type="checkbox" checked id="{{ $moduleTeacher->name }}" name="teachers[]" value="{{ $moduleTeacher->name }}">
                         <label for="{{ $moduleTeacher->name }}">{{ $moduleTeacher->name }}</label><br>
                     @endforeach
                     @foreach($teachers as $teacher)
-                        <input type="checkbox" id="{{ $teacher->name }}" name="teacher[]" value="{{ $teacher->name }}">
+                        <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
                         <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
                     @endforeach
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who coordinates this module?</label>
-                    <select class="form-control" id="selectTeacher" name="selectTeacher">
-                        <option value="">Noone yet</option>
-                        @foreach($teachers as $teacher)
+                    <select class="form-control" id="selectTeacher" name="selectedCoordinator">
+                        <option value="{{ $module->coordinator }}">{{ $module->teacher()->find($module->coordinator)->name ?? 'noone yet' }}</option>
+                        @foreach($module->teacher()->get() as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
 
@@ -54,9 +54,9 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
-                    <select class="form-control" id="selectTeacher" name="selectTeacher">
-                        <option value="">Noone yet</option>
-                        @foreach($teachers as $teacher)
+                    <select class="form-control" id="selectedTeacher" name="selectedTeacher">
+                    <option value="{{ $module->teacher }}">{{ $module->teacher()->find($module->teacher)->name ?? 'noone yet'}}</option>
+                        @foreach($module->teacher()->get() as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
 
