@@ -44,7 +44,7 @@
                     <label for="exampleFormControlSelect1">Who coordinates this module?</label>
                     <select class="form-control" id="selectTeacher" name="selectedCoordinator">
                         <option value="{{ $module->coordinator }}">{{ $module->teacher()->find($module->coordinator)->name ?? 'noone yet' }}</option>
-                        @foreach($module->teacher()->get() as $teacher)
+                        @foreach($teachersWithoutCoordinator as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
 
@@ -56,7 +56,7 @@
                     <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
                     <select class="form-control" id="selectedTeacher" name="selectedTeacher">
                     <option value="{{ $module->teacher }}">{{ $module->teacher()->find($module->teacher)->name ?? 'noone yet'}}</option>
-                        @foreach($module->teacher()->get() as $teacher)
+                        @foreach($teachersWithoutTeacher as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
 

@@ -88,6 +88,8 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $module = \App\Module::find($id);
         $teachers = \App\Teacher::all();
+        $teachersWithoutCoordinator = \App\Teacher::where('id','!=' ,$module->coordinator)->get();
+        $teachersWithoutTeacher = \App\Teacher::where('id', '!=' ,$module->teacher)->get();
         $teachers2 = array();
         foreach ($teachers as $teacher) {
             $found = false;
@@ -100,7 +102,7 @@ class AdminController extends Controller
                 array_push($teachers2, $teacher);
             }
         }
-        return view('admin.editModule', ['module' => $module], ['teachers' => $teachers2]);
+        return view('admin.editModule', ['module' => $module,'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator,'teachersWithoutTeacher' => $teachersWithoutTeacher]);
     }
 
     public function editTeacher(Request $request, $id)
@@ -108,6 +110,7 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $teacher = \App\Teacher::find($id);
         $modules = \App\Module::all();
+
         $modules2 = array();
         foreach ($modules as $module) {
             $found = false;
@@ -133,6 +136,7 @@ class AdminController extends Controller
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
         $module->teacher()->detach();
+
         foreach ($teachers as $teacher) {
             $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
         }
