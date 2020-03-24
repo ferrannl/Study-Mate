@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Block:</label>
                     <select class="form-control" id="selectBlock" name="selectBlock">
-                        <option value="">None</option>
+                        <option value="{{ $module->block_id }}">{{ $module->block_id->name ?? 'None'}}</option>
                         @foreach($blocksWithoutBlock as $block)
                             <option value="{{$block->id}}">{{ $block->name }}</option>
                         @endforeach

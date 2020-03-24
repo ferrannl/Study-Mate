@@ -14,8 +14,7 @@ class CreateBlocksTable extends Migration
     public function up()
     {
         Schema::create('blocks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name')->primary();
             $table->timestamps();
         });
     }

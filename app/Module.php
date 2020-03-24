@@ -17,6 +17,6 @@ class Module extends Model
     }
 
     public function block(){
-        return $this->hasOne('App\Block', 'id', 'blok');
+        return $this->hasOne('App\Block', 'name', 'block');
     }
 }

@@ -43,8 +43,10 @@ class AdminController extends Controller
         $modules = $request->modules;
 
         $teacher->save();
-        foreach ($modules as $module) {
-            $teacher->module()->attach(\App\Module::where('name', $module)->first());
+        if ($modules != null) {
+            foreach ($modules as $module) {
+                $teacher->module()->attach(\App\Module::where('name', $module)->first());
+            }
         }
         return redirect('/admin-dashboard');
     }
@@ -60,8 +62,11 @@ class AdminController extends Controller
         $teachers = $request->teachers;
 
         $module->save();
-        foreach ($teachers as $teacher) {
-            $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+        if ($teachers != null) {
+
+            foreach ($teachers as $teacher) {
+                $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+            }
         }
         return redirect('/admin-dashboard');
     }
@@ -89,9 +94,9 @@ class AdminController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $module = \App\Module::find($id);
         $teachers = \App\Teacher::all();
-        $teachersWithoutCoordinator = \App\Teacher::where('id','!=' ,$module->coordinator)->get();
-        $teachersWithoutTeacher = \App\Teacher::where('id', '!=' ,$module->teacher)->get();
-        $blocksWithoutBlock = \App\Block::where('id', '!=', $module->block)->get();
+        $teachersWithoutCoordinator = \App\Teacher::where('id', '!=', $module->coordinator)->get();
+        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $module->teacher)->get();
+        $blocksWithoutBlock = \App\Block::where('name', '!=', $module->block)->get();
         $teachers2 = array();
         foreach ($teachers as $teacher) {
             $found = false;
@@ -104,7 +109,7 @@ class AdminController extends Controller
                 array_push($teachers2, $teacher);
             }
         }
-        return view('admin.editModule', ['module' => $module,'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator,'teachersWithoutTeacher' => $teachersWithoutTeacher, 'blocksWithoutBlock' => $blocksWithoutBlock]);
+        return view('admin.editModule', ['module' => $module, 'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator, 'teachersWithoutTeacher' => $teachersWithoutTeacher, 'blocksWithoutBlock' => $blocksWithoutBlock]);
     }
 
     public function editTeacher(Request $request, $id)
@@ -114,6 +119,7 @@ class AdminController extends Controller
         $modules = \App\Module::all();
 
         $modules2 = array();
+
         foreach ($modules as $module) {
             $found = false;
             foreach ($teacher->module as $teacherModule) {
@@ -138,9 +144,11 @@ class AdminController extends Controller
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
         $module->teacher()->detach();
-
-        foreach ($teachers as $teacher) {
-            $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+        $module->block = request('selectBlock');
+        if ($teachers != null) {
+            foreach ($teachers as $teacher) {
+                $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+            }
         }
         $module->save();
         return redirect('/admin-dashboard');
@@ -153,8 +161,11 @@ class AdminController extends Controller
         $teacher->name = request('name');
         $modules = $request->modules;
         $teacher->module()->detach();
-        foreach ($modules as $module) {
-            $teacher->module()->attach(\App\Module::where('name', $module)->first());
+        if ($modules != null) {
+
+            foreach ($modules as $module) {
+                $teacher->module()->attach(\App\Module::where('name', $module)->first());
+            }
         }
 
         $teacher->save();
