@@ -19,4 +19,9 @@ class Module extends Model
     public function block(){
         return $this->hasOne('App\Block', 'name', 'block');
     }
+
+    public function assignment(){
+        return $this->belongsToMany('App\Assignment', 'assignments', 'module_id');
+    }
+
 }
