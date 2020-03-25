@@ -11,7 +11,7 @@ class DeadlineController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request,$orderColumn = null)
+    public function index(Request $request, $orderColumn = null)
     {
         $request->user()->authorizeRoles(['user']);
         $teachers = \App\Teacher::all();
@@ -24,6 +24,9 @@ class DeadlineController extends Controller
                 case"module":
                     $deadlines = \App\Assignment::join('modules as po', 'po.id', '=', 'assignments.module_id')->whereNotNull('deadline')->orderBy('po.name', 'DESC')->select('assignments.*')->get();
                     break;
+                case"teacher":
+                    $deadlines = \App\Assignment::join('teachers as po', 'po.id', '=', 'assignments.teacher_id')->whereNotNull('deadline')->orderBy('po.name', 'DESC')->select('assignments.*')->get();
+                    break;
                 default:
                     $deadlines = \App\Assignment::whereNotNull('deadline')->orderBy($orderColumn, 'DESC')->get();
                     break;
@@ -34,12 +37,16 @@ class DeadlineController extends Controller
 
         return view('deadline/dashboard', ['teachers' => $teachers, 'modules' => $modules, 'deadlines' => $deadlines]);
     }
-    public function create(Request $request){
+
+    public function create(Request $request)
+    {
         $request->user()->authorizeRoles(['user']);
         $assignments = \App\Assignment::whereNull('deadline')->get();
-        return view('deadline/create',['assignments' => $assignments]);
+        return view('deadline/create', ['assignments' => $assignments]);
     }
-    public function store(Request $request){
+
+    public function store(Request $request)
+    {
         $request->user()->authorizeRoles(['user']);
         $assignment = \App\Assignment::find(request('selectAssignment'));
         $assignment->deadline = request('deadline');

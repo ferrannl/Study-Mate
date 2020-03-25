@@ -73,7 +73,7 @@
                     <input type="file" name="file" class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-outline-success">Update</button>
 
             </form>
         </div>

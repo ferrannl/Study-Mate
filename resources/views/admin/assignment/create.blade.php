@@ -60,7 +60,7 @@
                         <input type="file" name="file" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-success">Add</button>
+                    <button type="submit" class="btn btn-outline-success">Add</button>
 
                 </form>
             </div>

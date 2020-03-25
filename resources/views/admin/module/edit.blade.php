@@ -79,7 +79,7 @@
                     <input value="{{$module->EC}}" class="form-control" type="number" min="1" max="30" name="ecValue"/>
                 </div>
 
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-outline-success">Update</button>
             </form>
         </div>
     </div>
