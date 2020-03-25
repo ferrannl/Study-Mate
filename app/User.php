@@ -46,7 +46,7 @@ class User extends Authenticatable
     {
         return Crypt::decryptString($value);
     }
-    public function roles()
+    public function role()
     {
         return $this->belongsToMany('App\Role');
     }
@@ -69,7 +69,7 @@ class User extends Authenticatable
      */
     public function hasAnyRole($roles)
     {
-        return null !== $this->roles()->whereIn('name', $roles)->first();
+        return null !== $this->role()->whereIn('name', $roles)->first();
     }
     /**
      * Check one role
@@ -77,6 +77,6 @@ class User extends Authenticatable
      */
     public function hasRole($role)
     {
-        return null !== $this->roles()->where('name', $role)->first();
+        return null !== $this->role()->where('name', $role)->first();
     }
 }

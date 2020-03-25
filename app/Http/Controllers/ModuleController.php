@@ -23,9 +23,9 @@ class ModuleController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $module = new \App\Module();
         $module->name = request('name');
-        $module->coordinator = request('selectCoordinator');
-        $module->teacher = request('selectTeacher');
-        $module->block = request('selectBlock');
+        $module->coordinator = request('selectedCoordinator');
+        $module->teacher = request('selectedTeacher');
+        $module->block = request('selectedBlock');
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
 
@@ -48,7 +48,7 @@ class ModuleController extends Controller
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
         $module->teacher()->detach();
-        $module->block = request('selectBlock');
+        $module->block = request('selectedBlock');
         if ($teachers != null) {
             foreach ($teachers as $teacher) {
                 $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());

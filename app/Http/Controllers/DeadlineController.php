@@ -42,14 +42,65 @@ class DeadlineController extends Controller
     {
         $request->user()->authorizeRoles(['user']);
         $assignments = \App\Assignment::whereNull('deadline')->get();
-        return view('deadline/create', ['assignments' => $assignments]);
+        $tags = \App\Tag::all();
+        return view('deadline/create', ['tags' => $tags, 'assignments' => $assignments]);
     }
 
     public function store(Request $request)
     {
         $request->user()->authorizeRoles(['user']);
-        $assignment = \App\Assignment::find(request('selectAssignment'));
+        $assignment = \App\Assignment::find(request('selectedAssignment'));
         $assignment->deadline = request('deadline');
+        $assignment->save();
+        return redirect('/deadline-dashboard');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['user']);
+        $assignment = \App\Assignment::find($id);
+        $assignment->deadline = request('selectedDeadline');
+        $tags = $request->tags;
+        $assignment->tag()->detach();
+        if ($tags != null) {
+
+            foreach ($tags as $tag) {
+                $assignment->tag()->attach(\App\Tag::where('name', $tag)->first());
+            }
+        }
+
+        $assignment->save();
+        return redirect('/deadline-dashboard');
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['user']);
+        $assignment = \App\Assignment::find($id);
+        $tags = \App\Tag::all();
+
+        $tags2 = array();
+
+        foreach ($tags as $tag) {
+            $found = false;
+            foreach ($assignment->tag as $assignmentTag) {
+                if ($tag->id == $assignmentTag->id) {
+                    $found = true;
+                }
+            }
+            if ($found == false) {
+                array_push($tags2, $tag);
+            }
+        }
+        return view('deadline.edit', ['assignment' => $assignment, 'tags' => $tags2]);
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['user']);
+        $assignment = \App\Assignment::find($id);
+        $assignment->deadline = null;
+        $assignment->tag()->detach();
         $assignment->save();
         return redirect('/deadline-dashboard');
     }

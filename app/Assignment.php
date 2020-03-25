@@ -19,4 +19,7 @@ class Assignment extends Model
     {
         return $this->hasOne('App\Category', 'id','category_id');
     }
+    public function tag(){
+        return $this->belongsToMany('App\Tag', 'assignment_has_tag', 'assignment_id','tag_id');
+    }
 }

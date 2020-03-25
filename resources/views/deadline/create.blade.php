@@ -18,21 +18,30 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Assignment: </label>
-                        <select class="form-control" id="selectAssignment" name="selectAssignment">
+                        <br>
 
+                        <select class="form-control" id="selectedAssignment" name="selectedAssignment">
                             @foreach($assignments as $assignment)
                                 <option value="{{$assignment->id}}">{{ $assignment->name }}</option>
                             @endforeach
-
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Tags: </label>
+                        <br>
+
+                    @foreach($tags as $tag)
+                                <input type="checkbox" id="{{ $tag->name }}" name="tags[]" value="{{ $tag->name }}">
+                                <label for="{{ $tag->name }}">{{ $tag->name }}</label><br>
+                            @endforeach
+                    </div>
+
+
                     <div class="form-group">
                         <label>Deadline: </label>
                         <input name="deadline" type="datetime-local"/>
                     </div>
-
-
-
 
                     <button type="submit" class="btn btn-outline-success">Add</button>
 

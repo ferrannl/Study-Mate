@@ -22,7 +22,9 @@
                     </div>
 
                     <div class="form-group">
-                        @foreach($modules as $module)
+                        <label for="name">Modules:</label>
+
+                    @foreach($modules as $module)
                             <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">
                             <label for="{{ $module->name }}">{{ $module->name }}</label><br>
                         @endforeach

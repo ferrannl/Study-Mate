@@ -18,7 +18,6 @@ class AssignmentController extends Controller
         $modules = \App\Module::all();
         $categories = \App\Category::all();
         $teachers = \App\Teacher::all();
-
         return view('admin.assignment.create',['modules' => $modules, 'categories' => $categories, 'teachers' => $teachers]);
     }
 
@@ -41,7 +40,6 @@ class AssignmentController extends Controller
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
         $assignment->save();
-
         return redirect('/admin-dashboard');
     }
 
@@ -49,8 +47,6 @@ class AssignmentController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $assignment = \App\Assignment::find($id);
-
-
         $assignment->delete();
         return redirect('/admin-dashboard');
     }
@@ -67,15 +63,12 @@ class AssignmentController extends Controller
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
         $assignment->teacher_id = \App\Module::find(request('selectedModule'))->teacher;
-
         if ($request->file != null) {
 
         $fileName = time() . '_' . $request->file->getClientOriginalName();
         $request->file->move(public_path('uploads'), $fileName);
         $assignment->file = $fileName;
         }
-
-
         $assignment->save();
         return redirect('/admin-dashboard');
     }

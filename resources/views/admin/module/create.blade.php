@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Who coordinates this module?</label>
-                        <select class="form-control" id="selectCoordinator" name="selectCoordinator">
+                        <select class="form-control" id="selectedCoordinator" name="selectedCoordinator">
                             <option value="">Noone yet</option>
                             @foreach($teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
-                        <select class="form-control" id="selectTeacher" name="selectTeacher">
+                        <select class="form-control" id="selectedTeacher" name="selectedTeacher">
                             <option value="">Noone yet</option>
                             @foreach($teachers as $teacher)
                                 <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
@@ -52,7 +52,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Block:</label>
-                        <select class="form-control" id="selectBlock" name="selectBlock">
+                        <select class="form-control" id="selectedBlock" name="selectedBlock">
                             <option value="">None</option>
                             @foreach($blocks as $block)
                                 <option value="{{$block->id}}">{{ $block->name }}</option>

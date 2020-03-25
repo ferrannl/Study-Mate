@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who coordinates this module?</label>
-                    <select class="form-control" id="selectTeacher" name="selectedCoordinator">
+                    <select class="form-control" id="selectedCoordinator" name="selectedCoordinator">
                         <option value="{{ $module->coordinator }}">{{ $module->teacher()->find($module->coordinator)->name ?? 'noone yet' }}</option>
                         @foreach($teachersWithoutCoordinator as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
@@ -66,7 +66,7 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Block:</label>
-                    <select class="form-control" id="selectBlock" name="selectBlock">
+                    <select class="form-control" id="selectedBlock" name="selectedBlock">
                         <option value="{{ $module->block }}">{{ $module->block ?? 'None'}}</option>
                         @foreach($blocksWithoutBlock as $block)
                             <option value="{{$block->name}}">{{ $block->name }}</option>

@@ -24,6 +24,7 @@
                                 <th><a href="/deadline-dashboard/category"> Category</a></th>
                                 <th>Tags</th>
 
+
                             </tr>
                             </thead>
                             <tbody>
@@ -34,6 +35,14 @@
                                     <td>{{$deadline->teacher()->first()->name ?? 'None'}}</td>
                                     <td>{{$deadline->deadline}}</td>
                                     <td>{{$deadline->category->name ?? "None"}}</td>
+                                    <td>@foreach($deadline->tag as $tag)
+                                            {{$tag->name}},
+                                        @endforeach
+                                    </td>
+                                    <td><a href="/deadline/edit/{{ $deadline->id }}" class="btn btn-outline-primary">Edit</a>
+                                    </td>
+                                    <td><a href="/deadline/delete/{{$deadline->id}}" class="btn btn-outline-danger">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

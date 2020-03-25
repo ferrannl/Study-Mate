@@ -79,6 +79,6 @@ class TeacherController extends Controller
                 array_push($modules2, $module);
             }
         }
-        return view('admin.teacher.edit', ['teacher' => $teacher], ['modules' => $modules2]);
+        return view('admin.teacher.edit', ['teacher' => $teacher, 'modules' => $modules2]);
     }
 }

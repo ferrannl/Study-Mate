@@ -24,8 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
 Route::get('/deadline-dashboard/{orderColumn?}', 'DeadlineController@index')->name('deadlines');
+
 Route::get('/deadline/create', 'DeadlineController@create');
-Route::post('/deadline/store', 'DeadlineController@store');
 
 Route::get('/teacher/create', 'TeacherController@create')->name('create');
 
@@ -39,6 +39,8 @@ Route::post('/module/store', 'ModuleController@store');
 
 Route::post('/assignment/store', 'AssignmentController@store');
 
+Route::post('/deadline/store', 'DeadlineController@store');
+
 Route::get('/teacher/delete/{id}', 'TeacherController@delete');
 
 Route::get('/module/delete/{id}', 'ModuleController@delete');
@@ -47,6 +49,10 @@ Route::get('/assignment/delete/{id}', 'AssignmentController@delete');
 
 Route::get('/teacher/edit/{id}', 'TeacherController@edit');
 
+Route::get('/deadline/edit/{id}', 'DeadlineController@edit');
+Route::get('/deadline/delete/{id}', 'DeadlineController@delete');
+
+
 Route::get('/module/edit/{id}', 'ModuleController@edit');
 
 Route::get('/assignment/edit/{id}', 'AssignmentController@edit');
@@ -54,6 +60,8 @@ Route::get('/assignment/edit/{id}', 'AssignmentController@edit');
 Route::post('/teacher/update/{id}', 'TeacherController@update');
 
 Route::post('/module/update/{id}', 'ModuleController@update');
+
+Route::post('/deadline/update/{id}', 'DeadlineController@update');
 
 Route::post('/assignment/update/{id}', 'AssignmentController@update');
 
