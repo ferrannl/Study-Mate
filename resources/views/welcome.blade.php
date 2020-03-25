@@ -99,7 +99,7 @@
 
                 <div class="links">
                     <a href="admin-dashboard">Admin Omgeving</a>
-                    <a href="dashboard">Dashboard</a>
+                    <a href="deadline-dashboard">Dashboard</a>
                     <a href="deadline-manager">Deadline Manager</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>

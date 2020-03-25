@@ -84,8 +84,6 @@ class AssignmentController extends Controller
         $assignment = \App\Assignment::find($id);
         $modulesWithoutModule = \App\Module::where('id', '!=', $assignment->module_id)->get();
         $categoriesWithoutCategory = \App\Category::where('id', '!=', $assignment->category_id)->get();
-
-
         return view('admin.assignment.edit', ['assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
     }
 }
