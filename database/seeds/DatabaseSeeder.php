@@ -76,6 +76,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'Suzan van Rietschoten',
         ]);
 
+        //categories
+        DB::table('categories')->insert([
+            'name' => 'Assessment',
+            'description' => 'Doorbeunen'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Test',
+            'description' => 'Multiple choice'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Homework',
+            'description' => 'Work work work'
+        ]);
+
         //assignments
         DB::table('assignments')->insert([
             'name' => 'Kaas',

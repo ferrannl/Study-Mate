@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
         $modules = \App\Module::all();
-        return view('admin.assignment.create',['modules' => $modules]);
+        $categories = \App\Category::all();
+
+
+        return view('admin.assignment.create',['modules' => $modules, 'categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -21,18 +29,17 @@ class AssignmentController extends Controller
             'file' => 'mimes:pdf,xlx,csv|max:2048',
         ]);
 
-
         $assignment = new \App\Assignment();
         if($request->file != null) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $request->file->move(public_path('uploads'), $fileName);
             $assignment->file = $fileName;
-
-
         }
+
         $assignment->name = request('name');
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
+        $assignment->category_id = request('selectedCategory');
         $assignment->save();
 
         return redirect('/admin-dashboard');
@@ -46,6 +53,7 @@ class AssignmentController extends Controller
         $assignment->delete();
         return redirect('/admin-dashboard');
     }
+
     public function update(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
@@ -56,6 +64,8 @@ class AssignmentController extends Controller
         $assignment->name = request('name');
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
+        $assignment->category_id = request('selectedCategory');
+
         if ($request->file != null) {
 
         $fileName = time() . '_' . $request->file->getClientOriginalName();
@@ -73,8 +83,9 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $assignment = \App\Assignment::find($id);
         $modulesWithoutModule = \App\Module::where('id', '!=', $assignment->module_id)->get();
+        $categoriesWithoutCategory = \App\Category::where('id', '!=', $assignment->category_id)->get();
 
 
-        return view('admin.assignment.edit', ['assignment' => $assignment,  'modules' => $modulesWithoutModule]);
+        return view('admin.assignment.edit', ['assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
     }
 }

@@ -14,12 +14,14 @@ class CreateAssignmentsTable extends Migration
     public function up()
     {
         Schema::create('assignments', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('description');
             $table->string('file')->nullable();
             $table->unsignedInteger('module_id')->nullable();
             $table->foreign('module_id')->references('id')->on('modules');
+            $table->unsignedInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });

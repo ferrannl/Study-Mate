@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);

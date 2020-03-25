@@ -27,17 +27,27 @@
                     </div>
 
                     <div class="form-group">
-                    <input type="file" name="file" class="form-control">
+                        <label for="exampleFormControlSelect1">Category:</label>
+                        <select class="form-control" id="selectedCategory" name="selectedCategory">
+                            <option value="">None</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Block:</label>
+                        <label for="exampleFormControlSelect1">Module:</label>
                         <select class="form-control" id="selectedModule" name="selectedModule">
                             <option value="">None</option>
                             @foreach($modules as $module)
                                 <option value="{{$module->id}}">{{ $module->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="file" class="form-control">
                     </div>
 
                     <button type="submit" class="btn btn-success">Add</button>
