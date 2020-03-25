@@ -23,6 +23,7 @@
                                 <th><a href="/deadline-dashboard/deadline">Deadline</a></th>
                                 <th><a href="/deadline-dashboard/category"> Category</a></th>
                                 <th>Tags</th>
+                                <th>Achieved</th>
 
 
                             </tr>
@@ -39,7 +40,18 @@
                                             {{$tag->name}},
                                         @endforeach
                                     </td>
-                                    <td><a href="/deadline/edit/{{ $deadline->id }}" class="btn btn-outline-primary">Edit</a>
+                                    <td>
+                                    <input type="checkbox" {{$deadline->achieved ?? 'checked'}}  id="{{ $deadline->id }}" name="checked[]" value="{{ $deadline->id }}">
+
+{{--                                        @foreach($teacher->module as $teacherModule)--}}
+{{--                                            <input type="checkbox" checked id="{{ $teacherModule->name }}" name="modules[]" value="{{ $teacherModule->name }}">--}}
+{{--                                            <label for="{{ $teacherModule->name }}">{{ $teacherModule->name }}</label><br>--}}
+{{--                                        @endforeach--}}
+{{--                                        @foreach($modules as $module)--}}
+{{--                                            <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">--}}
+{{--                                            <label for="{{ $module->name }}">{{ $module->name }}</label><br>--}}
+{{--                                        @endforeach--}}
+
                                     </td>
                                     <td><a href="/deadline/delete/{{$deadline->id}}" class="btn btn-outline-danger">Delete</a>
                                     </td>
