@@ -24,7 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
 Route::get('/deadline-dashboard/{orderColumn?}', 'DeadlineController@index')->name('deadlines');
-
+Route::get('/deadline/create', 'DeadlineController@create');
+Route::post('/deadline/store', 'DeadlineController@store');
 
 Route::get('/teacher/create', 'TeacherController@create')->name('create');
 

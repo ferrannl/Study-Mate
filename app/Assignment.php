@@ -10,6 +10,10 @@ class Assignment extends Model
     {
         return $this->hasOne('App\Module', 'id','module_id');
     }
+    public function teacher()
+    {
+        return $this->hasOne('App\Teacher', 'id','teacher_id');
+    }
 
     public function category()
     {

@@ -45,23 +45,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'block 8',
         ]);
 
-        //modules
-        DB::table('modules')->insert([
-            'name' => 'WEBSPHP',
-        ]);
-        DB::table('modules')->insert([
-            'name' => 'WEBSJS',
-        ]);
-        DB::table('modules')->insert([
-            'name' => 'EPRES',
-        ]);
-        DB::table('modules')->insert([
-            'name' => 'SOLLI',
-        ]);
-        DB::table('modules')->insert([
-            'name' => 'PYTHON',
-        ]);
-
         //teachers
         DB::table('teachers')->insert([
             'name' => 'Jasper van Rosmalen',
@@ -74,6 +57,31 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('teachers')->insert([
             'name' => 'Suzan van Rietschoten',
+        ]);
+
+        //modules
+        DB::table('modules')->insert([
+            'name' => 'WEBSPHP',
+            'teacher' => 1
+        ]);
+        DB::table('modules')->insert([
+            'name' => 'WEBSJS',
+            'teacher' => 1
+
+        ]);
+        DB::table('modules')->insert([
+            'name' => 'EPRES',
+            'teacher' => 2
+
+        ]);
+        DB::table('modules')->insert([
+            'name' => 'SOLLI',
+            'teacher' => 2
+
+        ]);
+        DB::table('modules')->insert([
+            'name' => 'PYTHON',
+            'teacher' => 2
         ]);
 
         //categories

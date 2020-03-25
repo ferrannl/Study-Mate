@@ -33,23 +33,33 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Module:</label>
-                    <select class="form-control" id="selectedModule" name="selectedModule">
-                        <option
-                            value="{{ $assignment->module_id ?? "" }}">{{ $assignment->module()->find($assignment->module_id)->name ?? 'None'}}</option>
-                        @foreach($modules as $module)
-                            <option value="{{$module->id}}">{{ $module->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label for="exampleFormControlSelect1">Category:</label>
                     <select class="form-control" id="selectedCategory" name="selectedCategory">
                         <option
                             value="{{ $assignment->category_id ?? "" }}">{{ $assignment->category()->find($assignment->category_id)->name ?? 'None'}}</option>
                         @foreach($categoriesWithoutCategory as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Teacher:</label>
+                    <select class="form-control" id="selectedTeacher" name="selectedTeacher">
+                        <option value="{{$assignment->teacher}}">{{ $assignment->teacher()->find($assignment->teacher)->first()->name ?? 'None'}}</option>
+                        @foreach($teachersWithoutTeacher as $teacher)
+                            <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Module:</label>
+                    <select class="form-control" id="selectedModule" name="selectedModule">
+                        <option
+                            value="{{ $assignment->module_id ?? "" }}">{{ $assignment->module()->find($assignment->module_id)->name ?? 'None'}}</option>
+                        @foreach($modules as $module)
+                            <option value="{{$module->id}}">{{ $module->name }}</option>
                         @endforeach
                     </select>
                 </div>

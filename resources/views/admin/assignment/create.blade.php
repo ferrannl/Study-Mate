@@ -37,6 +37,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">Teacher:</label>
+                        <select class="form-control" id="selectedTeacher" name="selectedTeacher">
+                            <option value="">None</option>
+                            @foreach($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleFormControlSelect1">Module:</label>
                         <select class="form-control" id="selectedModule" name="selectedModule">
                             <option value="">None</option>

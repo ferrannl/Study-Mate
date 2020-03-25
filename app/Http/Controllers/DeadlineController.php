@@ -16,14 +16,35 @@ class DeadlineController extends Controller
         $request->user()->authorizeRoles(['user']);
         $teachers = \App\Teacher::all();
         $modules = \App\Module::all();
-        $deadlines = \App\Assignment::join('categories as po', 'po.id', '=', 'assignments.category_id')->orderBy('po.name', 'DESC')->select('assignments.*')->get();
-        //if($orderColumn != null){
-          //  $deadlines = \App\Assignment::where('deadline', '!=', 'NULL')->orderBy($orderColumn,'DESC')->get();
+        if ($orderColumn != null) {
+            switch ($orderColumn) {
+                case"category":
+                    $deadlines = \App\Assignment::join('categories as po', 'po.id', '=', 'assignments.category_id')->whereNotNull('deadline')->orderBy('po.name', 'DESC')->select('assignments.*')->get();
+                    break;
+                case"module":
+                    $deadlines = \App\Assignment::join('modules as po', 'po.id', '=', 'assignments.module_id')->whereNotNull('deadline')->orderBy('po.name', 'DESC')->select('assignments.*')->get();
+                    break;
+                default:
+                    $deadlines = \App\Assignment::whereNotNull('deadline')->orderBy($orderColumn, 'DESC')->get();
+                    break;
+            }
+        } else {
+            $deadlines = \App\Assignment::whereNotNull('deadline')->get();
+        }
 
-       // }else {
-        //    $deadlines = \App\Assignment::where('deadline', '!=', 'NULL')->get();
-       // }
         return view('deadline/dashboard', ['teachers' => $teachers, 'modules' => $modules, 'deadlines' => $deadlines]);
+    }
+    public function create(Request $request){
+        $request->user()->authorizeRoles(['user']);
+        $assignments = \App\Assignment::whereNull('deadline')->get();
+        return view('deadline/create',['assignments' => $assignments]);
+    }
+    public function store(Request $request){
+        $request->user()->authorizeRoles(['user']);
+        $assignment = \App\Assignment::find(request('selectAssignment'));
+        $assignment->deadline = request('deadline');
+        $assignment->save();
+        return redirect('/deadline-dashboard');
     }
 
 }

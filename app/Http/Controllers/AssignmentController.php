@@ -17,9 +17,9 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $modules = \App\Module::all();
         $categories = \App\Category::all();
+        $teachers = \App\Teacher::all();
 
-
-        return view('admin.assignment.create',['modules' => $modules, 'categories' => $categories]);
+        return view('admin.assignment.create',['modules' => $modules, 'categories' => $categories, 'teachers' => $teachers]);
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class AssignmentController extends Controller
             $request->file->move(public_path('uploads'), $fileName);
             $assignment->file = $fileName;
         }
-
+        $assignment->teacher_id = request('selectedTeacher');
         $assignment->name = request('name');
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
@@ -65,6 +65,7 @@ class AssignmentController extends Controller
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
+        $assignment->teacher_id = \App\Module::find(request('selectedModule'))->teacher;
 
         if ($request->file != null) {
 
@@ -83,7 +84,8 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $assignment = \App\Assignment::find($id);
         $modulesWithoutModule = \App\Module::where('id', '!=', $assignment->module_id)->get();
+        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $assignment->teacher)->get();
         $categoriesWithoutCategory = \App\Category::where('id', '!=', $assignment->category_id)->get();
-        return view('admin.assignment.edit', ['assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
+        return view('admin.assignment.edit', ['teachersWithoutTeacher' => $teachersWithoutTeacher, 'assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
     }
 }
