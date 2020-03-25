@@ -49,7 +49,8 @@ class AssignmentController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $assignment = \App\Assignment::find($id);
-        $assignment->module()->detach();
+
+
         $assignment->delete();
         return redirect('/admin-dashboard');
     }

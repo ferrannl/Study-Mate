@@ -30,10 +30,10 @@
                             @foreach($deadlines as $deadline)
                                 <tr>
                                     <td>{{$deadline->name}}</td>
-                                    <td>{{$deadline->module()->first()->name}}</td>
+                                    <td>{{$deadline->module()->first()->name ?? "None"}}</td>
                                     <td>{{$deadline->teacher()->first()->name ?? 'None'}}</td>
                                     <td>{{$deadline->deadline}}</td>
-                                    <td>{{$deadline->category()->first()->name}}</td>
+                                    <td>{{$deadline->category->name ?? "None"}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

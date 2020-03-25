@@ -25,6 +25,7 @@ class CreateAssignmentsTable extends Migration
             $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->dateTime('deadline')->nullable();
+            $table->tinyInteger('achieved')->nullable();
             $table->timestamps();
         });
     }
