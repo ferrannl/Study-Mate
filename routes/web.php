@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
-Route::get('/deadline-dashboard/{orderColumn?}', 'DeadlineController@index')->name('deadlines');
+Route::get('/deadline-dashboard/{orderColumn?}/{ascdesc?}', 'DeadlineController@index')->name('deadlines');
 
 Route::get('/deadline/create', 'DeadlineController@create');
 
@@ -62,6 +62,7 @@ Route::post('/teacher/update/{id}', 'TeacherController@update');
 Route::post('/module/update/{id}', 'ModuleController@update');
 
 Route::post('/deadline/update/{id}', 'DeadlineController@update');
+Route::post('/deadline/updateAchieve', 'DeadlineController@updateAchieve');
 
 Route::post('/assignment/update/{id}', 'AssignmentController@update');
 

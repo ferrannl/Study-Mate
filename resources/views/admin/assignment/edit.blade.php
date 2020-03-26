@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .uper {
-            margin-top: 40px;
-        }
-    </style>
+
     <div class="card uper">
         <div class="card-header">
             Edit Assignment
@@ -36,7 +32,7 @@
                     <label for="exampleFormControlSelect1">Category:</label>
                     <select class="form-control" id="selectedCategory" name="selectedCategory">
                         <option
-                            value="{{ $assignment->category_id ?? "" }}">{{ $assignment->category()->find($assignment->category_id)->name ?? 'None'}}</option>
+                            value="{{ $assignment->category_id ?? '' }}">{{ $assignment->category()->find($assignment->category_id)->name ?? 'None'}}</option>
                         @foreach($categoriesWithoutCategory as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>
                         @endforeach

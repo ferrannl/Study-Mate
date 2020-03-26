@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .uper {
-            margin-top: 40px;
-        }
-    </style>
+
     
 
     <div class="card uper">
@@ -27,6 +23,10 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Tags: </label>
                     <br>
+                    @foreach($assignment->tag as $tag1)
+                    <input type="checkbox" checked id="{{ $tag1->name }}" name="tags[]" value="{{ $tag1->name }}">
+                        <label for="{{ $tag1->name }}">{{ $tag1->name }}</label><br>
+                    @endforeach
                     @foreach($tags as $tag)
                         <input type="checkbox" id="{{ $tag->name }}" name="tags[]" value="{{ $tag->name }}">
                         <label for="{{ $tag->name }}">{{ $tag->name }}</label><br>
@@ -41,7 +41,7 @@
 
 
 
-                </div>
+                
 
                 <br>
                 <button type="submit" class="btn btn-outline-success">Update</button>

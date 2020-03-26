@@ -14,14 +14,17 @@
 
 
                     <div class="card-body">
+                    <form method="post" action="/deadline/updateAchieve">
+                    @csrf
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th><a href="/deadline-dashboard/name"> Name</a></th>
-                                <th><a href="/deadline-dashboard/module">Module</a></th>
-                                <th><a href="/deadline-dashboard/teacher">Teacher</a></th>
-                                <th><a href="/deadline-dashboard/deadline">Deadline</a></th>
-                                <th><a href="/deadline-dashboard/category"> Category</a></th>
+                                <th>Name <br><a href="/deadline-dashboard/name/asc"><i class="fas fa-angle-up"></i></a><a href="/deadline-dashboard/name/desc"><i class="fas fa-angle-down"></i></a></th>
+                                <th>Module <br><a href="/deadline-dashboard/module/asc"><i class="fas fa-angle-up"></i></a><a href="/deadline-dashboard/module/desc"><i class="fas fa-angle-down"></i></a></th>
+                                <th>Teacher <br><a href="/deadline-dashboard/teacher/asc"><i class="fas fa-angle-up"></i></a><a href="/deadline-dashboard/teacher/desc"><i class="fas fa-angle-down"></i></a></th>
+                                <th>Deadline <br><a href="/deadline-dashboard/deadline/asc"><i class="fas fa-angle-up"></i></a><a href="/deadline-dashboard/deadline/desc"><i class="fas fa-angle-down"></i></a></th>
+                                <th>Category <br><a href="/deadline-dashboard/category/asc"><i class="fas fa-angle-up"></i></a><a href="/deadline-dashboard/category/desc"><i class="fas fa-angle-down"></i></a></th>
+
                                 <th>Tags</th>
                                 <th>Achieved</th>
 
@@ -41,16 +44,13 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                    <input type="checkbox" {{$deadline->achieved ?? 'checked'}}  id="{{ $deadline->id }}" name="checked[]" value="{{ $deadline->id }}">
+                                    @if($deadline->achieved == 1)
+                                    <input type="checkbox" checked  id="{{ $deadline->id }}" name="checked[]" value="{{ $deadline->id }}">
+                                    @else
+                                    <input type="checkbox" id="{{ $deadline->id }}" name="checked[]" value="{{ $deadline->id }}">
 
-{{--                                        @foreach($teacher->module as $teacherModule)--}}
-{{--                                            <input type="checkbox" checked id="{{ $teacherModule->name }}" name="modules[]" value="{{ $teacherModule->name }}">--}}
-{{--                                            <label for="{{ $teacherModule->name }}">{{ $teacherModule->name }}</label><br>--}}
-{{--                                        @endforeach--}}
-{{--                                        @foreach($modules as $module)--}}
-{{--                                            <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">--}}
-{{--                                            <label for="{{ $module->name }}">{{ $module->name }}</label><br>--}}
-{{--                                        @endforeach--}}
+                                    @endif
+
 
                                     </td>
                                     <td><a href="/deadline/edit/{{$deadline->id}}" class="btn btn-outline-primary">Edit</a>
@@ -61,6 +61,10 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <button type="submit" class="btn btn-outline-success">Save changes</button>
+                        
+                        </form>
+
 
                     </div>
                 </div>
