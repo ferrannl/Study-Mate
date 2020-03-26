@@ -43,9 +43,8 @@
 
                 <div class="links">
                     <a href="admin-dashboard">Admin Omgeving</a>
-                    <a href="#">Dashboard</a>
+                    <a href="guest-dashboard">Dashboard</a>
                     <a href="deadline-dashboard">Deadline Manager</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>

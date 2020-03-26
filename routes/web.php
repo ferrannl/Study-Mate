@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin-dashboard', 'AdminController@index')->name('admin');
 
+Route::get('/guest-dashboard', 'GuestController@index');
+
 Route::get('/deadline-dashboard/{orderColumn?}/{ascdesc?}', 'DeadlineController@index')->name('deadlines');
 
 Route::get('/deadline/create', 'DeadlineController@create');
@@ -45,13 +47,13 @@ Route::get('/teacher/delete/{id}', 'TeacherController@delete');
 
 Route::get('/module/delete/{id}', 'ModuleController@delete');
 
+Route::get('/deadline/delete/{id}', 'DeadlineController@delete');
+
 Route::get('/assignment/delete/{id}', 'AssignmentController@delete');
 
 Route::get('/teacher/edit/{id}', 'TeacherController@edit');
 
 Route::get('/deadline/edit/{id}', 'DeadlineController@edit');
-Route::get('/deadline/delete/{id}', 'DeadlineController@delete');
-
 
 Route::get('/module/edit/{id}', 'ModuleController@edit');
 
@@ -62,7 +64,9 @@ Route::post('/teacher/update/{id}', 'TeacherController@update');
 Route::post('/module/update/{id}', 'ModuleController@update');
 
 Route::post('/deadline/update/{id}', 'DeadlineController@update');
-Route::post('/deadline/updateAchieve', 'DeadlineController@updateAchieve');
 
 Route::post('/assignment/update/{id}', 'AssignmentController@update');
+
+Route::post('/deadline/updateAchieve', 'DeadlineController@updateAchieve');
+
 

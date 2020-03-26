@@ -19,30 +19,48 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
         ]);
 
+        //semester
+
+        DB::table('semesters')->insert([
+            'name' => 'semester 1',
+        ]);
+
+        DB::table('semesters')->insert([
+            'name' => 'semester 2',
+        ]);
+
         //blocks
         DB::table('blocks')->insert([
             'name' => 'block 1',
+            'semester_name' => 'semester 1',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 2',
+            'semester_name' => 'semester 1',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 3',
+            'semester_name' => 'semester 1',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 4',
+            'semester_name' => 'semester 1',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 5',
+            'semester_name' => 'semester 2',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 6',
+            'semester_name' => 'semester 2',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 7',
+            'semester_name' => 'semester 2',
         ]);
         DB::table('blocks')->insert([
             'name' => 'block 8',
+            'semester_name' => 'semester 2',
         ]);
 
         //teachers
@@ -137,5 +155,7 @@ class DatabaseSeeder extends Seeder
         DB::table('tags')->insert([
             'name' => 'kms',
         ]);
+
+
     }
 }

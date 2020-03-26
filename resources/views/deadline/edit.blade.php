@@ -2,7 +2,7 @@
 
 @section('content')
 
-    
+
 
     <div class="card uper">
         <div class="card-header">
@@ -38,10 +38,6 @@
                         <label>Deadline: </label>
                         <input name="deadline" type="datetime-local" value="{{$date}}"/>
                     </div>
-
-
-
-                
 
                 <br>
                 <button type="submit" class="btn btn-outline-success">Update</button>

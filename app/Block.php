@@ -13,4 +13,7 @@ class Block extends Model
     {
         return $this->belongsTo('App\Module', 'block', 'name');
     }
+    public function semester(){
+        return $this->hasOne('App\Semester', 'name', 'semester_name');
+    }
 }
