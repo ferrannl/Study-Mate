@@ -53,6 +53,8 @@
 {{--                                        @endforeach--}}
 
                                     </td>
+                                    <td><a href="/deadline/edit/{{$deadline->id}}" class="btn btn-outline-primary">Edit</a>
+                                    </td>
                                     <td><a href="/deadline/delete/{{$deadline->id}}" class="btn btn-outline-danger">Delete</a>
                                     </td>
                                 </tr>

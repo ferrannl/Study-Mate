@@ -78,7 +78,7 @@ class DeadlineController extends Controller
         $request->user()->authorizeRoles(['user']);
         $assignment = \App\Assignment::find($id);
         $tags = \App\Tag::all();
-
+        $date =  date("Y-m-d\TH:i", strtotime($assignment->deadline));
         $tags2 = array();
 
         foreach ($tags as $tag) {
@@ -92,7 +92,7 @@ class DeadlineController extends Controller
                 array_push($tags2, $tag);
             }
         }
-        return view('deadline.edit', ['assignment' => $assignment, 'tags' => $tags2]);
+        return view('deadline.edit', ['assignment' => $assignment, 'tags' => $tags2, 'date' => $date]);
     }
 
     public function delete(Request $request, $id)
