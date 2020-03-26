@@ -11,9 +11,10 @@ class Block extends Model
 
     public function module()
     {
-        return $this->hasMany('App\Module', 'block', 'name');
+        return $this->hasMany('App\Module', 'block_name', 'name');
     }
-    public function semester(){
-        return $this->hasMany('App\Semester', 'name', 'semester_name');
+    public function semester()
+    {
+        return $this->hasMany('App\Semester', 'semester_name', 'name');
     }
 }

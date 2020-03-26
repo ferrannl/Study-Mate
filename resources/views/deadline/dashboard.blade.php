@@ -36,9 +36,9 @@
                                 <tr>
                                     <td>{{$deadline->name}}</td>
                                     <td>{{$deadline->module()->first()->name ?? "None"}}</td>
-                                    <td>{{$deadline->teacher()->first()->name ?? 'None'}}</td>
+                                    <td>{{$deadline->teacher()->name ?? 'None'}}</td>
                                     <td>{{$deadline->deadline}}</td>
-                                    <td>{{$deadline->category->name ?? "None"}}</td>
+                                    <td>{{$deadline->category()->name ?? "None"}}</td>
                                     <td>@foreach($deadline->tag as $tag)
                                             {{$tag->name}},
                                         @endforeach
@@ -62,7 +62,7 @@
                             </tbody>
                         </table>
                         <button type="submit" class="btn btn-outline-success">Save changes</button>
-                        
+
                         </form>
 
 

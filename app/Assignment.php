@@ -8,7 +8,7 @@ class Assignment extends Model
 {
     public function module()
     {
-        return $this->belongsTo('App\Module', 'id','module_id');
+        return $this->belongsTo('App\Module', 'module_id','id');
     }
     public function teacher()
     {

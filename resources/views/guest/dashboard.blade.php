@@ -10,8 +10,10 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
+                            <th>Semester</th>
+                            <th>Block</th>
                             <th>Name</th>
-                            <th>Grade</th>
+                            <th>Average Grade</th>
                             <th>Achieved</th>
                             <th>Assignments</th>
                         </tr>
@@ -19,6 +21,8 @@
                         <tbody>
                         @foreach($modules as $module)
                             <tr>
+                                <td>{{$module->block()->name}}</td>
+                                <td>{{$module->block}}</td>
                                 <td>{{$module->name}}</td>
                                 <td>
                                     <label>{{$module->assignment->avg('grade')}}</label>

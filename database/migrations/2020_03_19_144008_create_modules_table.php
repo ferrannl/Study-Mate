@@ -22,8 +22,8 @@ class CreateModulesTable extends Migration
             $table->unsignedInteger('coordinator')->nullable();
             $table->foreign('coordinator')->references('id')->on('teachers');
             $table->integer('EC')->nullable();
-            $table->string('block')->nullable();
-            $table->foreign('block')->references('name')->on('blocks');
+            $table->string('block_name')->nullable();
+            $table->foreign('block_name')->references('name')->on('blocks');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class Module extends Model
     }
 
     public function block(){
-        return $this->belongsTo('App\Block', 'name', 'block');
+        return $this->belongsTo('App\Block', 'block_name', 'name');
     }
 
     public function assignment(){
