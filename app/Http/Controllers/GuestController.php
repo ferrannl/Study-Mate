@@ -10,8 +10,7 @@ class GuestController extends Controller
     public function index(Request $request)
     {
         $modules = \App\Module::all();
-        $assignments = \App\Assignment::all();
 
-        return view('guest/dashboard', ['modules' => $modules, 'assignments' => $assignments]);
+        return view('guest/dashboard', ['modules' => $modules]);
     }
 }

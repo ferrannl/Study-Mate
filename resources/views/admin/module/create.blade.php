@@ -55,7 +55,7 @@
                         <select class="form-control" id="selectedBlock" name="selectedBlock">
                             <option value="">None</option>
                             @foreach($blocks as $block)
-                                <option value="{{$block->id}}">{{ $block->name }}</option>
+                                <option value="{{$block->name}}">{{ $block->name }}</option>
                             @endforeach
                         </select>
                     </div>

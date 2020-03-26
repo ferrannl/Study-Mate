@@ -11,9 +11,9 @@ class Block extends Model
 
     public function module()
     {
-        return $this->belongsTo('App\Module', 'block', 'name');
+        return $this->hasMany('App\Module', 'block', 'name');
     }
     public function semester(){
-        return $this->hasOne('App\Semester', 'name', 'semester_name');
+        return $this->hasMany('App\Semester', 'name', 'semester_name');
     }
 }

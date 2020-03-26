@@ -13,15 +13,15 @@ class Module extends Model
 
     public function coordinator()
     {
-        return $this->hasOne('App\Teacher', 'id', 'coördinator');
+        return $this->hasMany('App\Teacher', 'id', 'coordinator');
     }
 
     public function block(){
-        return $this->hasOne('App\Block', 'name', 'block');
+        return $this->belongsTo('App\Block', 'name', 'block');
     }
 
     public function assignment(){
-        return $this->belongsTo('App\Assignment', 'module_id', 'id');
+        return $this->hasMany('App\Assignment', 'module_id', 'id');
     }
 
 }

@@ -62,6 +62,7 @@ class AssignmentController extends Controller
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
+        $assignment->grade = request('grade');
         $assignment->teacher_id = \App\Module::find(request('selectedModule'))->teacher;
         if ($request->file != null) {
 
@@ -78,7 +79,7 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $assignment = \App\Assignment::find($id);
         $modulesWithoutModule = \App\Module::where('id', '!=', $assignment->module_id)->get();
-        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $assignment->teacher)->get();
+        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $assignment->teacher_id)->get();
         $categoriesWithoutCategory = \App\Category::where('id', '!=', $assignment->category_id)->get();
         return view('admin.assignment.edit', ['teachersWithoutTeacher' => $teachersWithoutTeacher, 'assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
     }

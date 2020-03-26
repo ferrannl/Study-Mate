@@ -7,12 +7,36 @@
                 <div class="card">
                     <div class="card-header">Modules:</div>
 
-                    <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Grade</th>
+                            <th>Achieved</th>
+                            <th>Assignments</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @foreach($modules as $module)
-                            <h3>{{$module->name}}</h3>
-
+                            <tr>
+                                <td>{{$module->name}}</td>
+                                <td>
+                                    <label>{{$module->assignment->avg('grade')}}</label>
+                                </td>
+                                <td>@if($module->achieved == 1)
+                                Yes
+                                        @else
+                                    Not yet
+                                        @endif
+                                </td>
+                                <td>@foreach($module->assignment as $assignment)
+                                 {{$assignment->name}}: {{$assignment->grade ?? "N/A"}} <br>
+                                @endforeach
+                                </td>
+                            </tr>
                         @endforeach
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
