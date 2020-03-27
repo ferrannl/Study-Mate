@@ -66,6 +66,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="exampleFormControlSelect1">EC:</label>
+                    <input value="{{$assignment->EC}}" class="form-control" type="number" min="0" max="30" name="EC"/>
+                </div>
+
+                <div class="form-group">
                     <label for="name">File:</label>
                     <a href="/uploads/{{$assignment->file}}">{{$assignment->file}}</a>
                 </div>

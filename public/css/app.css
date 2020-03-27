@@ -10881,5 +10881,14 @@ a.text-dark:focus {
         color: inherit;
         border-color: #dee2e6;
     }
+
+    .progress-border {
+        border: 1px solid #ccc !important;
+    }
+
+    .progress-bar {
+        color: #fff !important;
+        background-color: #2196F3 !important;
+    }
 }
 

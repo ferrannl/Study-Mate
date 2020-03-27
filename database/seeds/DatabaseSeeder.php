@@ -123,7 +123,8 @@ class DatabaseSeeder extends Seeder
             'category_id' => 1,
             'teacher_id' => 2,
             'module_id' => 1,
-            'grade' => 8
+            'grade' => 8,
+            'EC' => 1
         ]);
 
         DB::table('assignments')->insert([
@@ -132,7 +133,8 @@ class DatabaseSeeder extends Seeder
             'category_id' => 1,
             'teacher_id' => 2,
             'module_id' => 1,
-            'grade' => 8
+            'grade' => 8,
+            'EC' => 1
         ]);
 
         DB::table('assignments')->insert([
@@ -141,7 +143,8 @@ class DatabaseSeeder extends Seeder
             'category_id' => 1,
             'teacher_id' => 2,
             'module_id' => 1,
-            'grade' => 8
+            'grade' => 8,
+            'EC' => 1
         ]);
 
 

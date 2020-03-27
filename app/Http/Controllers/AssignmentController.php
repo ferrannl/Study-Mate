@@ -39,6 +39,7 @@ class AssignmentController extends Controller
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
+        $assignment->EC = request('EC');
         $assignment->save();
         return redirect('/admin-dashboard');
     }
@@ -63,6 +64,7 @@ class AssignmentController extends Controller
         $assignment->module_id = request('selectedModule');
         $assignment->category_id = request('selectedCategory');
         $assignment->grade = request('grade');
+        $assignment->EC = request('EC');
         $assignment->teacher_id = \App\Module::find(request('selectedModule'))->teacher;
         if ($request->file != null) {
 

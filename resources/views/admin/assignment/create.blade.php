@@ -57,6 +57,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">EC:</label>
+                        <input class="form-control" type="number" min="0" max="30" name="EC"/>
+                    </div>
+
+                    <div class="form-group">
                         <input type="file" name="file" class="form-control">
                     </div>
 

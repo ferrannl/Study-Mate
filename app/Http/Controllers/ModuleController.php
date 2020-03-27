@@ -19,13 +19,14 @@ class ModuleController extends Controller
 
         return view('admin.module.create', ['teachers' => $teachers, 'blocks' => $blocks]);
     }
+
     public function store(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
         $validatedData = $request->validate([
             'selectedCoordinator' => 'required|max:255',
             'selectedTeacher' => 'required',
-            'teachers'=> 'required',
+            'teachers' => 'required',
             'name' => 'required|max:50',
             'selectedBlock' => 'required'
         ]);
@@ -46,13 +47,14 @@ class ModuleController extends Controller
         }
         return redirect('/admin-dashboard');
     }
-        public function update(Request $request, $id)
+
+    public function update(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
         $validatedData = $request->validate([
             'selectedCoordinator' => 'required|max:255',
             'selectedTeacher' => 'required',
-            'teachers'=> 'required',
+            'teachers' => 'required',
             'name' => 'required|max:50',
             'selectedBlock' => 'required'
         ]);
@@ -60,6 +62,13 @@ class ModuleController extends Controller
         $module->name = request('name');
         $module->teacher = request('selectedTeacher');
         $module->coordinator = request('selectedCoordinator');
+        $achieved = $request->achieved;
+        if ($achieved != null) {
+            $module->achieved = 1;
+        } else{
+            $module->achieved = 0;
+        }
+
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
         $module->teacher()->detach();
@@ -92,13 +101,11 @@ class ModuleController extends Controller
         $blocksWithoutBlock = \App\Block::where('name', '!=', $module->block)->get();
         $teachersWithoutTeacher1 = $module->teacher()->get();
         $teachers3 = array();
-        foreach($teachersWithoutTeacher1 as $teacher){
-            if($teacher->id != $module->teacher){
+        foreach ($teachersWithoutTeacher1 as $teacher) {
+            if ($teacher->id != $module->teacher) {
                 array_push($teachers3, $teacher);
             }
         }
-
-
 
         $teachers2 = array();
         foreach ($teachers as $teacher) {

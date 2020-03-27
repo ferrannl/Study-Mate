@@ -71,6 +71,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="name">Achieved:</label><br>
+                    @if($module->achieved == 1)
+                        <input type="checkbox" checked id="{{ $module->achieved }}" name="achieved[]">
+                        @else
+                    <input type="checkbox" id="{{ $module->achieved }}" name="achieved[]">
+                        @endif
+                </div>
+
+                <div class="form-group">
                     <label for="exampleFormControlSelect1">EC:</label>
                     <input value="{{$module->EC}}" class="form-control" type="number" min="1" max="30" name="ecValue"/>
                 </div>
