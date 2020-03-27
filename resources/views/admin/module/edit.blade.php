@@ -16,7 +16,7 @@
                     </ul>
                 </div><br/>
             @endif
-            <form method="post" action="/module/update/{{$module->id}}">
+            <form dusk="module-form" method="post" action="/module/update/{{$module->id}}">
                 @csrf
                 <div class="form-group">
                     <label for="name">Module Name:</label>
@@ -84,7 +84,7 @@
                     <input value="{{$module->EC}}" class="form-control" type="number" min="1" max="30" name="ecValue"/>
                 </div>
 
-                <button type="submit" class="btn btn-outline-success">Update</button>
+                <button dusk="save-module" type="submit" class="btn btn-outline-success">Update</button>
             </form>
         </div>
     </div>
