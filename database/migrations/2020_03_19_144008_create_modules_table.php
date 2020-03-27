@@ -18,9 +18,9 @@ class CreateModulesTable extends Migration
             $table->string('name', 50)->unique();
             $table->tinyInteger('achieved')->nullable();
             $table->unsignedInteger('teacher')->nullable();
-            $table->foreign('teacher')->references('id')->on('teachers');
+            $table->foreign('teacher')->references('id')->on('teachers')->onDelete('cascade');;
             $table->unsignedInteger('coordinator')->nullable();
-            $table->foreign('coordinator')->references('id')->on('teachers');
+            $table->foreign('coordinator')->references('id')->on('teachers')->onDelete('cascade');;
             $table->integer('EC')->nullable();
             $table->string('block_name')->nullable();
             $table->foreign('block_name')->references('name')->on('blocks');

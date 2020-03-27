@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who coordinates this module?</label>
                     <select class="form-control" id="selectedCoordinator" name="selectedCoordinator">
-                        <option value="{{ $module->coordinator }}">{{ $module->teacher()->find($module->coordinator)->name ?? 'noone yet' }}</option>
+                        <option value="{{ $module->coordinator ?? '' }}">{{ $module->teacher()->find($module->coordinator)->name ?? '' }}</option>
                         @foreach($teachersWithoutCoordinator as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
@@ -51,8 +51,8 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
                     <select class="form-control" id="selectedTeacher" name="selectedTeacher">
-                        <option value="{{ $module->teacher }}">{{ $module->teacher()->find($module->teacher)->name ?? 'noone yet'}}</option>
-                        @foreach($teachersWithoutTeacher as $teacher)
+                        <option value="{{ $module->teacher ?? ''}}">{{ $module->teacher()->find($module->teacher)->name ?? ''}}</option>
+                        @foreach($teachersWithoutTeacher1 as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach
 
@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Block:</label>
                     <select class="form-control" id="selectedBlock" name="selectedBlock">
-                        <option value="{{ $module->block }}">{{ $module->block ?? 'None'}}</option>
+                        <option value="{{ $module->block_name}}">{{ $module->block_name ?? 'None'}}</option>
                         @foreach($blocksWithoutBlock as $block)
                             <option value="{{$block->name}}">{{ $block->name }}</option>
                         @endforeach

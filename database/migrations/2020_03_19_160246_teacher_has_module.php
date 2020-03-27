@@ -17,8 +17,8 @@ class TeacherHasModule extends Migration
             $table->increments('id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('module_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');;
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');;
         });
     }
 

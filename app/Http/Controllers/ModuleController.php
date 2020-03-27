@@ -16,11 +16,19 @@ class ModuleController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $teachers = \App\Teacher::all();
         $blocks = \App\Block::all();
+
         return view('admin.module.create', ['teachers' => $teachers, 'blocks' => $blocks]);
     }
     public function store(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
+        $validatedData = $request->validate([
+            'selectedCoordinator' => 'required|max:255',
+            'selectedTeacher' => 'required',
+            'teachers'=> 'required',
+            'name' => 'required|max:50',
+            'selectedBlock' => 'required'
+        ]);
         $module = new \App\Module();
         $module->name = request('name');
         $module->coordinator = request('selectedCoordinator');
@@ -41,6 +49,13 @@ class ModuleController extends Controller
         public function update(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
+        $validatedData = $request->validate([
+            'selectedCoordinator' => 'required|max:255',
+            'selectedTeacher' => 'required',
+            'teachers'=> 'required',
+            'name' => 'required|max:50',
+            'selectedBlock' => 'required'
+        ]);
         $module = \App\Module::find($id);
         $module->name = request('name');
         $module->teacher = request('selectedTeacher');
@@ -48,7 +63,7 @@ class ModuleController extends Controller
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
         $module->teacher()->detach();
-        $module->block = request('selectedBlock');
+        $module->block_name = request('selectedBlock');
         if ($teachers != null) {
             foreach ($teachers as $teacher) {
                 $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
@@ -62,7 +77,7 @@ class ModuleController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $module = \App\Module::find($id);
-        $module->teacher()->detach();
+
         $module->delete();
         return redirect('/admin-dashboard');
     }
@@ -75,6 +90,14 @@ class ModuleController extends Controller
         $teachersWithoutCoordinator = \App\Teacher::where('id', '!=', $module->coordinator)->get();
         $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $module->teacher)->get();
         $blocksWithoutBlock = \App\Block::where('name', '!=', $module->block)->get();
+        $teachersWithoutTeacher1 = $module->teacher()->get();
+        $teachers3 = array();
+        foreach($teachersWithoutTeacher1 as $teacher){
+            if($teacher->id != $module->teacher){
+                array_push($teachers3, $teacher);
+            }
+        }
+
 
 
         $teachers2 = array();
@@ -89,6 +112,6 @@ class ModuleController extends Controller
                 array_push($teachers2, $teacher);
             }
         }
-        return view('admin.module.edit', ['module' => $module, 'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator, 'teachersWithoutTeacher' => $teachersWithoutTeacher, 'blocksWithoutBlock' => $blocksWithoutBlock]);
+        return view('admin.module.edit', ['module' => $module, 'teachers' => $teachers2, 'teachersWithoutCoordinator' => $teachersWithoutCoordinator, 'teachersWithoutTeacher1' => $teachers3, 'teachersWithoutTeacher' => $teachersWithoutTeacher, 'blocksWithoutBlock' => $blocksWithoutBlock]);
     }
 }

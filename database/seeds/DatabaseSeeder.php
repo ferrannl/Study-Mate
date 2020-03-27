@@ -118,9 +118,32 @@ class DatabaseSeeder extends Seeder
 
         //assignments
         DB::table('assignments')->insert([
-            'name' => 'Kaas',
-            'description' => 'Kaas je moer',
+            'name' => 'Pikjes1',
+            'description' => 'Kenker1',
+            'category_id' => 1,
+            'teacher_id' => 2,
+            'module_id' => 1,
+            'grade' => 8
         ]);
+
+        DB::table('assignments')->insert([
+            'name' => 'Pikjes',
+            'description' => 'Kenker',
+            'category_id' => 1,
+            'teacher_id' => 2,
+            'module_id' => 1,
+            'grade' => 8
+        ]);
+
+        DB::table('assignments')->insert([
+            'name' => 'Pikjes3',
+            'description' => 'Kenker3',
+            'category_id' => 1,
+            'teacher_id' => 2,
+            'module_id' => 1,
+            'grade' => 8
+        ]);
+
 
         //user
         DB::table('users')->insert([

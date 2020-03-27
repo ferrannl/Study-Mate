@@ -12,7 +12,7 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div><br />
+                    </div><br/>
                 @endif
                 <form method="post" action="/teacher/store">
                     @csrf
@@ -21,14 +21,7 @@
                         <input type="text" class="form-control" name="name"/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name">Modules:</label>
-                    <br>
-                    @foreach($modules as $module)
-                            <input type="checkbox" id="{{ $module->name }}" name="modules[]" value="{{ $module->name }}">
-                            <label for="{{ $module->name }}">{{ $module->name }}</label><br>
-                        @endforeach
-                    </div>
+
 
                     <button type="submit" class="btn btn-outline-success">Add</button>
 

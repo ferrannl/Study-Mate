@@ -19,9 +19,9 @@ class CreateAssignmentsTable extends Migration
             $table->string('description');
             $table->string('file')->nullable();
             $table->unsignedInteger('module_id')->nullable();
-            $table->foreign('module_id')->references('id')->on('modules');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');;
             $table->unsignedInteger('teacher_id')->nullable();
-            $table->foreign('teacher_id')->references('id')->on('teachers');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');;
             $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->dateTime('deadline')->nullable();

@@ -21,8 +21,8 @@
                         <tbody>
                         @foreach($modules as $module)
                             <tr>
-                                <td>{{$module->block()->name}}</td>
-                                <td>{{$module->block}}</td>
+                                <td>{{$module->block->semester_name ?? ''}}</td>
+                                <td>{{$module->block_name}}</td>
                                 <td>{{$module->name}}</td>
                                 <td>
                                     <label>{{$module->assignment->avg('grade')}}</label>

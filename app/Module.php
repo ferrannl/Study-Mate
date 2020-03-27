@@ -11,9 +11,13 @@ class Module extends Model
         return $this->belongsToMany('App\Teacher', 'teacher_has_module', 'module_id','teacher_id');
     }
 
+    public function myTeacher(){
+        return $this->hasMany('App\Teacher', 'teacher', 'id');
+    }
+
     public function coordinator()
     {
-        return $this->hasMany('App\Teacher', 'id', 'coordinator');
+        return $this->hasMany('App\Teacher', 'coordinator', 'id');
     }
 
     public function block(){
