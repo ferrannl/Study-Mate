@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
+use App\Module;
+use App\Assignment;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class DeadlineController extends Controller
@@ -14,28 +18,28 @@ class DeadlineController extends Controller
     public function index(Request $request, $orderColumn = null,$ascdesc = null)
     {
         $request->user()->authorizeRoles(['user']);
-        $teachers = \App\Teacher::all();
-        $modules = \App\Module::all();
+        $teachers = Teacher::all();
+        $modules = Module::all();
         if ($orderColumn != null && $ascdesc != null) {
             switch ($orderColumn) {
                 case"category":
-                    $deadlines = \App\Assignment::join('categories as po', 'po.id', '=', 'assignments.category_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
+                    $deadlines = Assignment::join('categories as po', 'po.id', '=', 'assignments.category_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
                     break;
                 case"module":
-                    $deadlines = \App\Assignment::join('modules as po', 'po.id', '=', 'assignments.module_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
+                    $deadlines = Assignment::join('modules as po', 'po.id', '=', 'assignments.module_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
                     break;
                 case"teacher":
-                    $deadlines = \App\Assignment::join('teachers as po', 'po.id', '=', 'assignments.teacher_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
+                    $deadlines = Assignment::join('teachers as po', 'po.id', '=', 'assignments.teacher_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
                     break;
                 case"deadline":
-                $deadlines = \App\Assignment::whereNotNull('deadline')->orderBy($orderColumn, strtoupper($ascdesc))->get();
+                $deadlines = Assignment::whereNotNull('deadline')->orderBy($orderColumn, strtoupper($ascdesc))->get();
                 break;
                     default:
                     return redirect('/deadline-dashboard');
                     break;
             }
         } else {
-            $deadlines = \App\Assignment::whereNotNull('deadline')->get();
+            $deadlines = Assignment::whereNotNull('deadline')->get();
         }
 
         return view('deadline/dashboard', ['teachers' => $teachers, 'modules' => $modules, 'deadlines' => $deadlines]);
@@ -44,8 +48,8 @@ class DeadlineController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['user']);
-        $assignments = \App\Assignment::whereNull('deadline')->get();
-        $tags = \App\Tag::all();
+        $assignments = Assignment::whereNull('deadline')->get();
+        $tags = Tag::all();
         return view('deadline/create', ['tags' => $tags, 'assignments' => $assignments]);
     }
 
@@ -56,7 +60,7 @@ class DeadlineController extends Controller
             'deadline' => 'required|date'
         ]);
 
-        $assignment = \App\Assignment::find(request('selectedAssignment'));
+        $assignment = Assignment::find(request('selectedAssignment'));
         $assignment->deadline = request('deadline');
         $assignment->save();
         return redirect('/deadline-dashboard');
@@ -65,14 +69,14 @@ class DeadlineController extends Controller
     public function update(Request $request, $id)
     {
         $request->user()->authorizeRoles(['user']);
-        $assignment = \App\Assignment::find($id);
+        $assignment = Assignment::find($id);
         $assignment->deadline = request('deadline');
         $tags = $request->tags;
         $assignment->tag()->detach();
         if ($tags != null) {
 
             foreach ($tags as $tag) {
-                $assignment->tag()->attach(\App\Tag::where('name', $tag)->first());
+                $assignment->tag()->attach(Tag::where('name', $tag)->first());
             }
         }
 
@@ -91,7 +95,7 @@ class DeadlineController extends Controller
         if ($deadlines != null) {
 
             foreach ($deadlines as $deadline) {
-               $assignment = \App\Assignment::find($deadline);
+               $assignment = Assignment::find($deadline);
                $assignment->achieved = 1;
                $assignment->save();
             }
@@ -103,12 +107,12 @@ class DeadlineController extends Controller
     public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['user']);
-        $assignment = \App\Assignment::find($id);
+        $assignment = Assignment::find($id);
 
         if($assignment == null){
              return redirect('/deadline-dashboard');
         }
-             $tags = \App\Tag::all();
+             $tags = Tag::all();
         $date =  date("Y-m-d\TH:i", strtotime($assignment->deadline));
         $tags2 = array();
 
@@ -129,7 +133,7 @@ class DeadlineController extends Controller
     public function delete(Request $request, $id)
     {
         $request->user()->authorizeRoles(['user']);
-        $assignment = \App\Assignment::find($id);
+        $assignment = Assignment::find($id);
         $assignment->deadline = null;
         $assignment->tag()->detach();
         $assignment->save();

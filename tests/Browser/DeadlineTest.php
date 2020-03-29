@@ -2,9 +2,11 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use App\Teacher;
+use App\Module;
+use App\Assignment;
 
 class DeadlineTest extends DuskTestCase
 {
@@ -22,7 +24,8 @@ class DeadlineTest extends DuskTestCase
             $teacherName = "Teacher" . $randomNumber;
             $assignmentName = "Assignment".$randomNumber;
 
-            $browser->visit('http://studymate.com/login')
+            $browser
+                ->visit('http://studymate.com/login')
                 ->type('email', 'admin@studymate.com')
                 ->type('password', 'admin1234')
                 ->press('login')
@@ -36,7 +39,7 @@ class DeadlineTest extends DuskTestCase
                 ->assertSee($teacherName)
                 ->pause(1000);
 
-            $teachers = \App\Teacher::all();
+            $teachers = Teacher::all();
             foreach ($teachers as $teacher) {
 
                 if ($teacher->name == $teacherName) {
@@ -56,7 +59,7 @@ class DeadlineTest extends DuskTestCase
                 ->pause(1000)
                 ->assertSee($moduleName);
 
-            $module = \App\Module::where('name', '=', $moduleName)->first();
+            $module = Module::where('name', '=', $moduleName)->first();
             $module->teacher()->attach($teacher1);
             $module->save();
             $browser->visit('http://studymate.com/module/edit/' . $module->id)
@@ -80,7 +83,7 @@ class DeadlineTest extends DuskTestCase
                 ->assertSee($assignmentName)
                 ->pause(3000)
                 ->visit('http://studymate.com/deadline/create')
-                ->select('selectedAssignment', \App\Assignment::where('name', '=', $assignmentName)->first()->id)
+                ->select('selectedAssignment', Assignment::where('name', '=', $assignmentName)->first()->id)
                 ->type('deadline', "20")
                 ->type('deadline', "05")
                 ->type('deadline', "2020")
@@ -111,7 +114,7 @@ class DeadlineTest extends DuskTestCase
                 ->assertSee($teacherName)
                 ->pause(1000);
 
-            $teachers = \App\Teacher::all();
+            $teachers = Teacher::all();
             foreach ($teachers as $teacher) {
 
                 if ($teacher->name == $teacherName) {
@@ -131,7 +134,7 @@ class DeadlineTest extends DuskTestCase
                 ->pause(1000)
                 ->assertSee($moduleName);
 
-            $module = \App\Module::where('name', '=', $moduleName)->first();
+            $module = Module::where('name', '=', $moduleName)->first();
             $module->teacher()->attach($teacher1);
             $module->save();
             $browser->visit('http://studymate.com/module/edit/' . $module->id)
@@ -155,7 +158,7 @@ class DeadlineTest extends DuskTestCase
                 ->assertSee($assignmentName)
                 ->pause(3000)
                 ->visit('http://studymate.com/deadline/create')
-                ->select('selectedAssignment', \App\Assignment::where('name', '=', $assignmentName)->first()->id)
+                ->select('selectedAssignment', Assignment::where('name', '=', $assignmentName)->first()->id)
                 ->type('deadline', "20")
                 ->type('deadline', "05")
                 ->type('deadline', "2020")
@@ -166,7 +169,7 @@ class DeadlineTest extends DuskTestCase
                 ->pause(1000)
                 ->assertSee($assignmentName);
 
-                $assignment_id = \App\Assignment::where('name', '=', $assignmentName)->first()->id;
+                $assignment_id = Assignment::where('name', '=', $assignmentName)->first()->id;
 
 
                 $browser

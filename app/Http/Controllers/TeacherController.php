@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
+use App\Module;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -14,7 +16,7 @@ class TeacherController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        $modules = \App\Module::all();
+        $modules = Module::all();
         return view('admin.teacher.create', ['modules' => $modules]);
     }
 
@@ -24,7 +26,7 @@ class TeacherController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:50'
         ]);
-        $teacher = new \App\Teacher();
+        $teacher = new Teacher();
         $teacher->name = request('name');
 
 
@@ -36,7 +38,7 @@ class TeacherController extends Controller
     public function delete(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $teacher = \App\Teacher::find($id);
+        $teacher = Teacher::find($id);
         $teacher->delete();
 
 
@@ -50,7 +52,7 @@ class TeacherController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:50'
         ]);
-        $teacher = \App\Teacher::find($id);
+        $teacher = Teacher::find($id);
         $teacher->name = request('name');
         $modules = $request->modules;
 
@@ -61,7 +63,7 @@ class TeacherController extends Controller
     public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $teacher = \App\Teacher::find($id);
+        $teacher = Teacher::find($id);
 
         return view('admin.teacher.edit', ['teacher' => $teacher]);
     }

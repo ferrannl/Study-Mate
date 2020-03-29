@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
 use App\Module;
+use App\Category;
+use App\Assignment;
 use Illuminate\Http\Request;
 
 class AssignmentController extends Controller
@@ -15,9 +18,9 @@ class AssignmentController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        $modules = \App\Module::all();
-        $categories = \App\Category::all();
-        $teachers = \App\Teacher::all();
+        $modules = Module::all();
+        $categories = Category::all();
+        $teachers = Teacher::all();
         return view('admin.assignment.create',['modules' => $modules, 'categories' => $categories, 'teachers' => $teachers]);
     }
 
@@ -52,7 +55,7 @@ class AssignmentController extends Controller
     public function delete(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $assignment = \App\Assignment::find($id);
+        $assignment = Assignment::find($id);
         $assignment->delete();
         return redirect('/admin-dashboard');
     }
@@ -68,7 +71,7 @@ class AssignmentController extends Controller
             'selectedCategory' => 'required',
             'selectedTeacher' => 'required',
         ]);
-        $assignment = \App\Assignment::find($id);
+        $assignment = Assignment::find($id);
         $assignment->name = request('name');
         $assignment->description = request('description');
         $assignment->module_id = request('selectedModule');
@@ -89,10 +92,10 @@ class AssignmentController extends Controller
     public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $assignment = \App\Assignment::find($id);
-        $modulesWithoutModule = \App\Module::where('id', '!=', $assignment->module_id)->get();
-        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $assignment->teacher_id)->get();
-        $categoriesWithoutCategory = \App\Category::where('id', '!=', $assignment->category_id)->get();
+        $assignment = Assignment::find($id);
+        $modulesWithoutModule = Module::where('id', '!=', $assignment->module_id)->get();
+        $teachersWithoutTeacher = Teacher::where('id', '!=', $assignment->teacher_id)->get();
+        $categoriesWithoutCategory = Category::where('id', '!=', $assignment->category_id)->get();
         return view('admin.assignment.edit', ['teachersWithoutTeacher' => $teachersWithoutTeacher, 'assignment' => $assignment,  'modules' => $modulesWithoutModule, 'categoriesWithoutCategory' => $categoriesWithoutCategory]);
     }
 }

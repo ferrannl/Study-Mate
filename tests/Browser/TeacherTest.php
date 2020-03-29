@@ -2,8 +2,8 @@
 
 namespace Tests\Browser;
 
-use App\Module;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Teacher;
+
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -20,7 +20,8 @@ class TeacherTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $randomNumber = rand(1000, 10000);
             $teacherName = "Teacher".$randomNumber;
-            $browser->visit('http://studymate.com/login')
+            $browser
+                ->visit('http://studymate.com/login')
                 ->type('email', 'admin@studymate.com')
                 ->type('password', 'admin1234')
                 ->press('login')
@@ -38,7 +39,7 @@ class TeacherTest extends DuskTestCase
     public function testEditTeacher()
     {
         $this->browse(function (Browser $browser) {
-            $teacher_id = \App\Teacher::first()->id;
+            $teacher_id = Teacher::first()->id;
             $randomNumber = rand(1000, 10000);
             $teacherName = "Teacher".$randomNumber;
             $browser

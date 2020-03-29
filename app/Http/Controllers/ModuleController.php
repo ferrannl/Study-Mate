@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
+use App\Module;
+use App\Block;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -14,8 +17,8 @@ class ModuleController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        $teachers = \App\Teacher::all();
-        $blocks = \App\Block::all();
+        $teachers = Teacher::all();
+        $blocks = Block::all();
 
         return view('admin.module.create', ['teachers' => $teachers, 'blocks' => $blocks]);
     }
@@ -29,7 +32,7 @@ class ModuleController extends Controller
             'name' => 'required|max:50',
             'selectedBlock' => 'required'
         ]);
-        $module = new \App\Module();
+        $module = new Module();
         $module->name = request('name');
         $module->coordinator = request('selectedCoordinator');
         $module->block_name = request('selectedBlock');
@@ -40,7 +43,7 @@ class ModuleController extends Controller
         if ($teachers != null) {
 
             foreach ($teachers as $teacher) {
-                $module->teacher()->attach(\App\Teacher::find($teacher));
+                $module->teacher()->attach(Teacher::find($teacher));
             }
         }
         return redirect('/admin-dashboard');
@@ -56,7 +59,7 @@ class ModuleController extends Controller
             'name' => 'required|max:50',
             'selectedBlock' => 'required'
         ]);
-        $module = \App\Module::find($id);
+        $module = Module::find($id);
         $module->name = request('name');
         $module->teacher = request('selectedTeacher');
         $module->coordinator = request('selectedCoordinator');
@@ -73,7 +76,7 @@ class ModuleController extends Controller
         $module->block_name = request('selectedBlock');
         if ($teachers != null) {
             foreach ($teachers as $teacher) {
-                $module->teacher()->attach(\App\Teacher::find($teacher));
+                $module->teacher()->attach(Teacher::find($teacher));
             }
         }
         $module->save();
@@ -83,7 +86,7 @@ class ModuleController extends Controller
     public function delete(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $module = \App\Module::find($id);
+        $module = Module::find($id);
 
         $module->delete();
         return redirect('/admin-dashboard');
@@ -92,11 +95,11 @@ class ModuleController extends Controller
     public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
-        $module = \App\Module::find($id);
-        $teachers = \App\Teacher::all();
-        $teachersWithoutCoordinator = \App\Teacher::where('id', '!=', $module->coordinator)->get();
-        $teachersWithoutTeacher = \App\Teacher::where('id', '!=', $module->teacher)->get();
-        $blocksWithoutBlock = \App\Block::where('name', '!=', $module->block)->get();
+        $module = Module::find($id);
+        $teachers = Teacher::all();
+        $teachersWithoutCoordinator = Teacher::where('id', '!=', $module->coordinator)->get();
+        $teachersWithoutTeacher = Teacher::where('id', '!=', $module->teacher)->get();
+        $blocksWithoutBlock = Block::where('name', '!=', $module->block)->get();
         $teachersWithoutTeacher1 = $module->teacher()->get();
         $teachers3 = array();
         foreach ($teachersWithoutTeacher1 as $teacher) {
