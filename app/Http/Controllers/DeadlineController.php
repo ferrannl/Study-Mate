@@ -52,6 +52,10 @@ class DeadlineController extends Controller
     public function store(Request $request)
     {
         $request->user()->authorizeRoles(['user']);
+        $validatedData = $request->validate([
+            'deadline' => 'required|date'
+        ]);
+
         $assignment = \App\Assignment::find(request('selectedAssignment'));
         $assignment->deadline = request('deadline');
         $assignment->save();
@@ -100,9 +104,9 @@ class DeadlineController extends Controller
     {
         $request->user()->authorizeRoles(['user']);
         $assignment = \App\Assignment::find($id);
-        
+
         if($assignment == null){
-             return redirect('/deadline-dashboard'); 
+             return redirect('/deadline-dashboard');
         }
              $tags = \App\Tag::all();
         $date =  date("Y-m-d\TH:i", strtotime($assignment->deadline));
