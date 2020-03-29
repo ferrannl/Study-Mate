@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class DatabaseSeeder extends Seeder
 {
@@ -65,16 +66,16 @@ class DatabaseSeeder extends Seeder
 
         //teachers
         DB::table('teachers')->insert([
-            'name' => 'Jasper van Rosmalen',
+            'name' => Crypt::encryptString('Jasper van Rosmalen'),
         ]);
         DB::table('teachers')->insert([
-            'name' => 'Stefan van Dockum',
+            'name' => Crypt::encryptString('Stefan van Dockum'),
         ]);
         DB::table('teachers')->insert([
-            'name' => 'Dirk Pesman',
+            'name' => Crypt::encryptString('Dirk Pesman'),
         ]);
         DB::table('teachers')->insert([
-            'name' => 'Suzan van Rietschoten',
+            'name' => Crypt::encryptString('Suzan van Rietschoten'),
         ]);
 
         //modules

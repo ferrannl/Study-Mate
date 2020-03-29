@@ -36,11 +36,11 @@
 
                 <div class="form-group">
                         <label>Deadline: </label>
-                        <input name="deadline" type="datetime-local" value="{{$date}}"/>
+                        <input name="deadline" id="deadline" type="datetime-local" value="{{$date}}"/>
                     </div>
 
                 <br>
-                <button type="submit" class="btn btn-outline-success">Update</button>
+                <button name="save-deadline" type="submit" class="btn btn-outline-success">Update</button>
             </form>
         </div>
     </div>

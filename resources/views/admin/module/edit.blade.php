@@ -27,11 +27,11 @@
                     <label for="name">Which teachers teach this module:</label>
                     <br>
                     @foreach($module->teacher()->get() as $moduleTeacher)
-                        <input type="checkbox" checked id="{{ $moduleTeacher->name }}" name="teachers[]" value="{{ $moduleTeacher->name }}">
+                        <input type="checkbox" checked id="{{ $moduleTeacher->name }}" name="teachers[]" value="{{ $moduleTeacher->id }}">
                         <label for="{{ $moduleTeacher->name }}">{{ $moduleTeacher->name }}</label><br>
                     @endforeach
                     @foreach($teachers as $teacher)
-                        <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
+                        <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->id }}">
                         <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
                     @endforeach
                 </div>
@@ -84,7 +84,7 @@
                     <input value="{{$module->EC}}" class="form-control" type="number" min="1" max="30" name="ecValue"/>
                 </div>
 
-                <button dusk="save-module" type="submit" class="btn btn-outline-success">Update</button>
+                <button name="save-module" type="submit" class="btn btn-outline-success">Update</button>
             </form>
         </div>
     </div>

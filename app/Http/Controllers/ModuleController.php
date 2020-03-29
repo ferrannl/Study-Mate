@@ -25,7 +25,6 @@ class ModuleController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $validatedData = $request->validate([
             'selectedCoordinator' => 'required|max:255',
-            'selectedTeacher' => 'required',
             'teachers' => 'required',
             'name' => 'required|max:50',
             'selectedBlock' => 'required'
@@ -33,8 +32,7 @@ class ModuleController extends Controller
         $module = new \App\Module();
         $module->name = request('name');
         $module->coordinator = request('selectedCoordinator');
-        $module->teacher = request('selectedTeacher');
-        $module->block = request('selectedBlock');
+        $module->block_name = request('selectedBlock');
         $module->EC = request('ecValue');
         $teachers = $request->teachers;
 
@@ -42,7 +40,7 @@ class ModuleController extends Controller
         if ($teachers != null) {
 
             foreach ($teachers as $teacher) {
-                $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+                $module->teacher()->attach(\App\Teacher::find($teacher));
             }
         }
         return redirect('/admin-dashboard');
@@ -75,7 +73,7 @@ class ModuleController extends Controller
         $module->block_name = request('selectedBlock');
         if ($teachers != null) {
             foreach ($teachers as $teacher) {
-                $module->teacher()->attach(\App\Teacher::where('name', $teacher)->first());
+                $module->teacher()->attach(\App\Teacher::find($teacher));
             }
         }
         $module->save();

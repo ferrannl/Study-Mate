@@ -20,10 +20,7 @@
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" name="name"/>
                     </div>
-
-
-
-                    <button type="submit" class="btn btn-outline-success">Add</button>
+                    <button name="save" type="submit" class="btn btn-outline-success">Add</button>
 
                 </form>
             </div>

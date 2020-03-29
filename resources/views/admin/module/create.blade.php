@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="name">Which teachers teach this module:</label><br>
                         @foreach($teachers as $teacher)
-                            <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->name }}">
+                            <input type="checkbox" id="{{ $teacher->name }}" name="teachers[]" value="{{ $teacher->id }}">
                             <label for="{{ $teacher->name }}">{{ $teacher->name }}</label><br>
                         @endforeach
                     </div>
@@ -36,16 +36,6 @@
                                 <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                             @endforeach
 
-
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Who teaches this module to you?</label>
-                        <select class="form-control" id="selectedTeacher" name="selectedTeacher">
-                            <option value=""></option>
-                            @foreach($teachers as $teacher)
-                                <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
-                            @endforeach
 
                         </select>
                     </div>
@@ -65,7 +55,7 @@
                         <label for="exampleFormControlSelect1">EC:</label>
                         <input class="form-control" type="number" min="1" max="30" name="ecValue"/>
                     </div>
-                    <button type="submit" class="btn btn-outline-success">Add</button>
+                    <button name="save" type="submit" class="btn btn-outline-success">Add</button>
 
                 </form>
             </div>

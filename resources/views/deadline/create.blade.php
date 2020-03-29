@@ -40,10 +40,10 @@
 
                     <div class="form-group">
                         <label>Deadline: </label>
-                        <input name="deadline" type="datetime-local"/>
+                        <input id="deadline" name="deadline" type="datetime-local"/>
                     </div>
 
-                    <button type="submit" class="btn btn-outline-success">Add</button>
+                    <button name="save-deadline" type="submit" class="btn btn-outline-success">Add</button>
 
                 </form>
             </div>

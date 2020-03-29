@@ -26,6 +26,11 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $request->validate([
             'file' => 'mimes:pdf,xlx,csv|max:2048',
+            'name' => 'required|max:50',
+            'description' => 'required|max:500',
+            'selectedModule' => 'required',
+            'selectedCategory' => 'required',
+            'selectedTeacher' => 'required',
         ]);
 
         $assignment = new \App\Assignment();
@@ -57,6 +62,11 @@ class AssignmentController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $request->validate([
             'file' => 'mimes:pdf,xlx,csv|max:2048',
+            'name' => 'required|max:50',
+            'description' => 'required|max:500',
+            'selectedModule' => 'required',
+            'selectedCategory' => 'required',
+            'selectedTeacher' => 'required',
         ]);
         $assignment = \App\Assignment::find($id);
         $assignment->name = request('name');
@@ -65,7 +75,7 @@ class AssignmentController extends Controller
         $assignment->category_id = request('selectedCategory');
         $assignment->grade = request('grade');
         $assignment->EC = request('EC');
-        $assignment->teacher_id = \App\Module::find(request('selectedModule'))->teacher;
+        $assignment->teacher_id = request('selectedTeacher');
         if ($request->file != null) {
 
         $fileName = time() . '_' . $request->file->getClientOriginalName();

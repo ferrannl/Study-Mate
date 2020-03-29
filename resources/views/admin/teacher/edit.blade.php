@@ -25,7 +25,7 @@
                 </div>
 
                 <br>
-                <button type="submit" class="btn btn-outline-success">Update</button>
+                <button name="update" type="submit" class="btn btn-outline-success">Update</button>
             </form>
 
         </div>

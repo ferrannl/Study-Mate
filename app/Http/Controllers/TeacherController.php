@@ -22,7 +22,6 @@ class TeacherController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $validatedData = $request->validate([
-
             'name' => 'required|max:50'
         ]);
         $teacher = new \App\Teacher();
@@ -49,7 +48,6 @@ class TeacherController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $validatedData = $request->validate([
-
             'name' => 'required|max:50'
         ]);
         $teacher = \App\Teacher::find($id);
