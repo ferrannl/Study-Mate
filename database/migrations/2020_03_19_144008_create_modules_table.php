@@ -24,7 +24,6 @@ class CreateModulesTable extends Migration
             $table->integer('EC')->nullable();
             $table->string('block_name')->nullable();
             $table->foreign('block_name')->references('name')->on('blocks');
-            $table->timestamps();
         });
     }
 

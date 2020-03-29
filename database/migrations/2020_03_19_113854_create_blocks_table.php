@@ -17,7 +17,6 @@ class CreateBlocksTable extends Migration
             $table->string('name')->primary();
             $table->string('semester_name')->nullable();
             $table->foreign('semester_name')->references('name')->on('semesters');
-            $table->timestamps();
         });
     }
 

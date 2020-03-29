@@ -28,7 +28,6 @@ class CreateAssignmentsTable extends Migration
             $table->tinyInteger('achieved')->nullable();
             $table->unsignedDouble('grade')->nullable();
             $table->unsignedInteger('EC')->nullable();
-            $table->timestamps();
         });
     }
 

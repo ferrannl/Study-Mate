@@ -81,26 +81,69 @@ class DatabaseSeeder extends Seeder
         //modules
         DB::table('modules')->insert([
             'name' => 'WEBSPHP',
-            'teacher' => 1
+            'coordinator' => 2,
+            'block_name' => 'block 1',
+            'EC' => 6
         ]);
         DB::table('modules')->insert([
             'name' => 'WEBSJS',
-            'teacher' => 1
+            'coordinator' => 2,
+            'block_name' => 'block 1',
+            'EC' => 6
+            ]);
 
-        ]);
         DB::table('modules')->insert([
             'name' => 'EPRES',
-            'teacher' => 2
-
+            'coordinator' => 2,
+            'block_name' => 'block 1',
+            'EC' => 1
         ]);
+
         DB::table('modules')->insert([
             'name' => 'SOLLI',
-            'teacher' => 2
-
+            'coordinator' => 1,
+            'block_name' => 'block 1',
+            'EC' => 3
         ]);
         DB::table('modules')->insert([
             'name' => 'PYTHON',
-            'teacher' => 2
+            'coordinator' => 3,
+            'block_name' => 'block 1',
+            'EC' => 4
+        ]);
+
+        //teachermodule
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 1,
+            'module_id' => 1
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 1,
+            'module_id' => 2
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 1,
+            'module_id' => 3
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 1,
+            'module_id' => 4
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 1,
+            'module_id' => 5
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 2,
+            'module_id' => 1
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 2,
+            'module_id' => 2
+        ]);
+        DB::table('teacher_has_module')->insert([
+            'teacher_id' => 3,
+            'module_id' => 3
         ]);
 
         //categories
@@ -119,33 +162,30 @@ class DatabaseSeeder extends Seeder
 
         //assignments
         DB::table('assignments')->insert([
-            'name' => 'Pikjes1',
-            'description' => 'Kenker1',
+            'name' => 'Laravel Studymate',
+            'description' => 'Laravel Studymate met je mate',
             'category_id' => 1,
             'teacher_id' => 2,
             'module_id' => 1,
             'grade' => 8,
-            'EC' => 1
         ]);
 
         DB::table('assignments')->insert([
-            'name' => 'Pikjes',
-            'description' => 'Kenker',
+            'name' => 'Monster Zoo',
+            'description' => 'Snoeihard aan het Javascripten',
             'category_id' => 1,
             'teacher_id' => 2,
-            'module_id' => 1,
+            'module_id' => 2,
             'grade' => 8,
-            'EC' => 1
         ]);
 
         DB::table('assignments')->insert([
-            'name' => 'Pikjes3',
-            'description' => 'Kenker3',
+            'name' => 'TEDxTalk',
+            'description' => 'Presentatie in het Engels',
             'category_id' => 1,
             'teacher_id' => 2,
-            'module_id' => 1,
+            'module_id' => 3,
             'grade' => 8,
-            'EC' => 1
         ]);
 
 
@@ -155,11 +195,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('role_user')->insert([
-            'id' => '1','role_id' => '2','user_id' => '1'
+            'id' => '1', 'role_id' => '2', 'user_id' => '1'
         ]);
 
         DB::table('role_user')->insert([
-            'id' => '2','role_id' => '1','user_id' => '1'
+            'id' => '2', 'role_id' => '1', 'user_id' => '1'
         ]);
 
         //tags
@@ -178,11 +218,6 @@ class DatabaseSeeder extends Seeder
         DB::table('tags')->insert([
             'name' => 'boring',
         ]);
-
-        DB::table('tags')->insert([
-            'name' => 'kms',
-        ]);
-
 
     }
 }

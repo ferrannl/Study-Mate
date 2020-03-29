@@ -43,6 +43,19 @@ error_reporting(E_ALL);
 
                     </ul>
 
+
+                    <!-- middle? -->
+
+                    <ul class="navbar-nav mr-auto nav-item">
+                        <a href="admin-dashboard">Admin Omgeving</a>
+                    </ul>
+                    <ul class="navbar-nav mr-auto nav-item">
+                        <a href="guest-dashboard">Dashboard</a>
+                    </ul>
+                    <ul class="navbar-nav mr-auto nav-item">
+                        <a href="deadline-dashboard">Deadline Manager</a>
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

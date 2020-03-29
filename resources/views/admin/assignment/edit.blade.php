@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Teacher:</label>
                     <select class="form-control" id="selectedTeacher" name="selectedTeacher">
-                        <option value="{{$assignment->teacher}}">{{ $assignment->teacher()->find($assignment->teacher_id)->name ?? 'None'}}</option>
+                        <option value="{{$assignment->teacher_id}}">{{ $assignment->teacher()->find($assignment->teacher_id)->name ?? 'None'}}</option>
                         @foreach($teachersWithoutTeacher as $teacher)
                             <option value="{{$teacher->id}}">{{ $teacher->name }}</option>
                         @endforeach

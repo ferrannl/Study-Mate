@@ -25,7 +25,7 @@ class AssignmentController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $request->validate([
-            'file' => 'mimes:pdf,xlx,csv|max:2048',
+            'file' => 'mimes:pdf,xlx,csv,zip|max:12048',
             'name' => 'required|max:50',
             'description' => 'required|max:500',
             'selectedModule' => 'required',
@@ -61,7 +61,7 @@ class AssignmentController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $request->validate([
-            'file' => 'mimes:pdf,xlx,csv|max:2048',
+            'file' => 'mimes:pdf,xlx,csv,zip|max:12048',
             'name' => 'required|max:50',
             'description' => 'required|max:500',
             'selectedModule' => 'required',

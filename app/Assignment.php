@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assignment extends Model
 {
+    public $timestamps = false;
+
     public function module()
     {
         return $this->belongsTo('App\Module', 'module_id','id');

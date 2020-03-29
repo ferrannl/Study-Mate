@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Crypt;
 
 class Teacher extends Model
 {
+    public $timestamps = false;
+
     public function module()
     {
         return $this->belongsToMany('App\Module', 'teacher_has_module', 'teacher_id','module_id');

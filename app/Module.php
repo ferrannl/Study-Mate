@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
+    public $timestamps = false;
+
     public function teacher()
     {
         return $this->belongsToMany('App\Teacher', 'teacher_has_module', 'module_id','teacher_id');
