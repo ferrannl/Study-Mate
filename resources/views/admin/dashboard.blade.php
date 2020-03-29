@@ -23,7 +23,7 @@
                     <div class="card-body">
                         @foreach($modules as $module)
                             <h3>{{$module->name}}</h3>
-
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=111x111&data={{$module->assignment}}" />
                             <a href="/module/edit/{{ $module->id }}" class="btn btn-outline-primary">Edit</a>
                             <a href="/module/delete/{{$module->id}}" class="btn btn-outline-danger">Delete</a>
 
