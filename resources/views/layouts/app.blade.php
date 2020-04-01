@@ -47,13 +47,13 @@ error_reporting(E_ALL);
                     <!-- middle? -->
 
                     <ul class="navbar-nav mr-auto nav-item">
-                        <a href="admin-dashboard">Admin Omgeving</a>
+                        <a href="/admin-dashboard">Admin Omgeving</a>
                     </ul>
                     <ul class="navbar-nav mr-auto nav-item">
-                        <a href="guest-dashboard">Dashboard</a>
+                        <a href="/guest-dashboard">Dashboard</a>
                     </ul>
                     <ul class="navbar-nav mr-auto nav-item">
-                        <a href="deadline-dashboard">Deadline Manager</a>
+                        <a href="/deadline-dashboard">Deadline Manager</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

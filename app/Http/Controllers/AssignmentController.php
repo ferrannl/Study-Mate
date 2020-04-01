@@ -36,7 +36,7 @@ class AssignmentController extends Controller
             'selectedTeacher' => 'required',
         ]);
 
-        $assignment = new \App\Assignment();
+        $assignment = new Assignment();
         if($request->file != null) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $request->file->move(public_path('uploads'), $fileName);

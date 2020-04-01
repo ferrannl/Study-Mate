@@ -22,6 +22,9 @@ class DeadlineController extends Controller
         $modules = Module::all();
         if ($orderColumn != null && $ascdesc != null) {
             switch ($orderColumn) {
+                case"name":
+                    $deadlines = Assignment::orderBy('name', strtoupper($ascdesc))->get();
+                    break;
                 case"category":
                     $deadlines = Assignment::join('categories as po', 'po.id', '=', 'assignments.category_id')->whereNotNull('deadline')->orderBy('po.name', strtoupper($ascdesc))->select('assignments.*')->get();
                     break;
