@@ -1,4 +1,4 @@
-## Laravel website to CRUD classes, teachers, exams including grades and much more
+## Laravel website to CRUD courses, teachers, exams including grades and much more
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
