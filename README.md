@@ -1,78 +1,89 @@
-## Laravel website to CRUD courses, teachers, exams including grades and much more
+# Study-Mate
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Study-Mate is a Laravel web application that lets you manage everything around a school or course program: **courses**, **teachers**, **exams** and **grades** (CRUD), all in one place.  
+It was built as a final assignment (*Eindopdracht*) to practice full-stack Laravel development.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Development Notes](#development-notes)
+- [Contributing](#contributing)
+- [License](#license)
+- [Credits](#credits)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Course Management**
+  - Create, read, update and delete courses
+  - Store metadata such as name, description, period, etc.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Teacher Management**
+  - CRUD interface for teachers
+  - Link teachers to one or more courses
 
-## Laravel Sponsors
+- **Exam & Grade Management**
+  - Define exams per course
+  - Register and update grades
+  - Overview of results per exam / course
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Laravel Goodies**
+  - Routing, controllers and views using the Laravel MVC pattern
+  - Eloquent ORM for working with the database
+  - Blade templates for reusable layouts and views
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+---
 
-## Contributing
+## Tech Stack
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Backend Framework:** [Laravel](https://laravel.com/)
+- **Language:** PHP
+- **Templating:** Blade
+- **Database:** Any Laravel-supported SQL database (MySQL/MariaDB, PostgreSQL, etc.)
+- **Tooling:**
+  - Composer for PHP dependencies
+  - NPM for frontend/build tooling (via `webpack.mix.js`)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Project Structure
 
-## Security Vulnerabilities
+The project follows the standard Laravel structure. Some key directories:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- `app/` – Application logic (models, controllers, etc.)
+- `routes/` – Route definitions (e.g. `web.php`)
+- `resources/views/` – Blade templates for the UI
+- `database/` – Migrations, seeds and factories
+- `public/` – Public entry point (`index.php`) and public assets
+- `config/` – Configuration files
+- `tests/` – Automated tests
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- PHP (compatible with the Laravel version used in this project)
+- Composer
+- A database server (MySQL/MariaDB, PostgreSQL, etc.)
+- Node.js and NPM (for building assets, if needed)
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/ferrannl/Study-Mate.git
+   cd Study-Mate
